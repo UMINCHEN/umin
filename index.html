@@ -13,14 +13,19 @@
 <body>
 
   <!-- ============== NAV ============== -->
-  <nav class="nav">
+  <nav class="nav" id="nav">
     <div class="nav__inner">
       <a href="#top" class="nav__logo">UMIN</a>
-      <ul class="nav__links">
-        <li><a href="#section-01"><span class="nav__num">01</span> 背景與優勢</a></li>
-        <li><a href="#section-02"><span class="nav__num">02</span> 核心專案</a></li>
-        <li><a href="#section-03"><span class="nav__num">03</span> 其他專案</a></li>
-        <li><a href="#section-04"><span class="nav__num">04</span> 反思與展望</a></li>
+      <button class="nav__toggle" id="navToggle" aria-label="開啟選單" aria-expanded="false" aria-controls="navLinks">
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+      </button>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#section-01">背景與優勢</a></li>
+        <li><a href="#section-02">核心專案</a></li>
+        <li><a href="#section-03">其他專案</a></li>
+        <li><a href="#section-04">反思與展望</a></li>
       </ul>
     </div>
   </nav>
@@ -228,11 +233,7 @@
     </div>
 
     <!-- 挑戰 -->
-    <div class="block">
-      <div class="block__label">
-        <span class="material-symbols-rounded">warning</span>
-        <span>挑戰</span>
-      </div>
+    <div class="block block--challenge">
       <div class="block__body">
         <h3 class="block__heading">挑戰</h3>
         <ul class="challenges">
@@ -549,6 +550,60 @@
       <p class="thanks__sub">UMIN · UI / UX Designer · Portfolio 2026</p>
     </div>
   </footer>
+
+  <script>
+    // ============== 漢堡選單 ==============
+    (function () {
+      const nav = document.getElementById('nav');
+      const toggle = document.getElementById('navToggle');
+      const links = document.getElementById('navLinks');
+      if (!toggle || !links) return;
+
+      const close = () => {
+        nav.classList.remove('nav--open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('no-scroll');
+      };
+      const open = () => {
+        nav.classList.add('nav--open');
+        toggle.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('no-scroll');
+      };
+
+      toggle.addEventListener('click', () => {
+        if (nav.classList.contains('nav--open')) close();
+        else open();
+      });
+
+      // 點到任何選單連結 → 自動關閉
+      links.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', close);
+      });
+
+      // 視窗放大回桌面尺寸時自動關閉
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 960 && nav.classList.contains('nav--open')) close();
+      });
+    })();
+
+    // ============== 區塊標題滾動淡入 ==============
+    (function () {
+      if (!('IntersectionObserver' in window)) return;
+      const targets = document.querySelectorAll('.section__title, .block__heading, .hero__title, .other-project__title, .thanks__title');
+      targets.forEach(el => el.classList.add('reveal'));
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('reveal--in');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+
+      targets.forEach(el => io.observe(el));
+    })();
+  </script>
 
 </body>
 </html>

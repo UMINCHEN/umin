@@ -107,12 +107,40 @@ s { color: var(--ink-3); }
   transition: color 0.2s ease;
 }
 .nav__links a:hover { color: var(--accent); }
-.nav__num {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--ink-3);
-  letter-spacing: 0.12em;
+
+/* 漢堡按鈕（桌面隱藏） */
+.nav__toggle {
+  display: none;
+  position: relative;
+  z-index: 60;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  margin: 0;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
+.nav__toggle:hover { border-color: var(--accent); }
+.nav__toggle-bar {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+.nav--open .nav__toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav--open .nav__toggle-bar:nth-child(2) { opacity: 0; }
+.nav--open .nav__toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+body.no-scroll { overflow: hidden; }
 
 /* =========================================================
    Hero
@@ -399,6 +427,50 @@ s { color: var(--ink-3); }
   margin: 32px 0;
   border-top: none;
   box-shadow: var(--shadow);
+}
+
+/* 挑戰區塊：暖深色底 */
+.block--challenge {
+  background: #2A1F18;
+  color: #F5EFE6;
+  border-radius: var(--r-lg);
+  padding: 56px;
+  margin: 32px 0;
+  border-top: none;
+  grid-template-columns: 1fr;
+}
+.block--challenge .block__heading {
+  color: #FFFFFF;
+}
+.block--challenge .challenges li {
+  background: rgba(255, 255, 255, 0.04);
+  border-left-color: var(--accent);
+  color: #F5EFE6;
+}
+.block--challenge .challenges li p { color: #F5EFE6; }
+.block--challenge .challenges li .material-symbols-rounded { color: var(--warm-yellow); }
+.block--challenge .challenges__strike {
+  opacity: 0.45;
+  border-left-color: rgba(255, 255, 255, 0.2) !important;
+}
+.block--challenge .challenges__strike .material-symbols-rounded { color: rgba(255, 255, 255, 0.4); }
+.block--challenge .challenges__strike s { color: rgba(255, 255, 255, 0.55); }
+
+/* =========================================================
+   滾動淡入動畫
+   ========================================================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal--in {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
 }
 
 /* =========================================================
@@ -746,32 +818,51 @@ s { color: var(--ink-3); }
   .block { grid-template-columns: 1fr; gap: 20px; }
   .block__label { position: static; }
   .block--feature { padding: 32px; }
+  .block--challenge { padding: 32px; }
   .achievements { grid-template-columns: 1fr; }
   .traits, .lessons, .grid-2 { grid-template-columns: 1fr; }
-  .nav__links { gap: 14px; }
-  .nav__links a { font-size: 13px; }
   .other-project { grid-template-columns: 1fr; gap: 16px; }
   .other-project__index { font-size: 40px; }
   .section__head { grid-template-columns: 1fr; gap: 12px; }
-}
 
-@media (max-width: 720px) {
+  /* === 漢堡選單啟用 === */
   .nav__inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
     padding: 14px 20px;
   }
-  .nav__links {
-    width: 100%;
-    gap: 16px 18px;
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    padding-bottom: 2px;
-    scrollbar-width: none;
+  .nav__toggle {
+    display: flex;
   }
-  .nav__links::-webkit-scrollbar { display: none; }
-  .nav__links a { white-space: nowrap; font-size: 13px; }
+  .nav__links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(320px, 78vw);
+    height: 100vh;
+    background: var(--bg);
+    border-left: 1px solid var(--line);
+    box-shadow: -16px 0 40px rgba(60, 40, 20, 0.08);
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    padding: 96px 28px 32px;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 40;
+  }
+  .nav--open .nav__links {
+    transform: translateX(0);
+  }
+  .nav__links li {
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .nav__links a {
+    display: block;
+    padding: 18px 4px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+  }
 }
 
 @media (max-width: 600px) {
