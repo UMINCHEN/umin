@@ -255,15 +255,18 @@ s { color: var(--ink-3); }
 
 .placeholder--portrait {
   aspect-ratio: 3 / 4;
-  max-width: 380px;
+  width: 100%;
+  max-width: 420px;
   margin-left: auto;
+  margin-right: 0;
 }
 .placeholder--cover {
   aspect-ratio: 16 / 7;
   margin: 0 0 48px;
 }
 .placeholder--wide { aspect-ratio: 16 / 9; }
-.placeholder--tall { aspect-ratio: 4 / 5; }
+/* tall 只在單獨使用時生效；與 wide 同用時保持 wide 比例 */
+.placeholder--tall:not(.placeholder--wide) { aspect-ratio: 4 / 5; }
 .placeholder--detail { aspect-ratio: 16 / 8; margin-top: 14px; }
 .placeholder--infinity {
   aspect-ratio: 5 / 2;
@@ -602,7 +605,9 @@ s { color: var(--ink-3); }
 .details li {
   display: grid;
   grid-template-columns: 64px 1fr;
-  gap: 24px;
+  grid-template-rows: auto auto;
+  column-gap: 24px;
+  row-gap: 12px;
   padding: 24px 0;
   border-bottom: 1px solid var(--line-soft);
 }
@@ -613,12 +618,20 @@ s { color: var(--ink-3); }
   color: var(--accent);
   letter-spacing: -0.02em;
   line-height: 1;
+  grid-column: 1;
+  grid-row: 1;
 }
 .details li p {
-  margin: 0 0 4px;
+  margin: 0;
   font-size: 17px;
   color: var(--ink);
   line-height: 1.7;
+  grid-column: 2;
+  grid-row: 1;
+}
+.details li .placeholder {
+  grid-column: 1 / -1;
+  margin: 4px 0 0;
 }
 
 /* =========================================================
@@ -729,11 +742,12 @@ s { color: var(--ink-3); }
    ========================================================= */
 @media (max-width: 960px) {
   .hero__grid { grid-template-columns: 1fr; gap: 48px; }
-  .placeholder--portrait { margin: 0 auto; max-width: 320px; }
+  .placeholder--portrait { margin: 0 auto; max-width: 360px; }
   .block { grid-template-columns: 1fr; gap: 20px; }
   .block__label { position: static; }
   .block--feature { padding: 32px; }
-  .achievements, .traits, .lessons, .grid-2 { grid-template-columns: 1fr; }
+  .achievements { grid-template-columns: 1fr; }
+  .traits, .lessons, .grid-2 { grid-template-columns: 1fr; }
   .nav__links { gap: 14px; }
   .nav__links a { font-size: 13px; }
   .other-project { grid-template-columns: 1fr; gap: 16px; }
@@ -741,12 +755,38 @@ s { color: var(--ink-3); }
   .section__head { grid-template-columns: 1fr; gap: 12px; }
 }
 
+@media (max-width: 720px) {
+  .nav__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 20px;
+  }
+  .nav__links {
+    width: 100%;
+    gap: 16px 18px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+  }
+  .nav__links::-webkit-scrollbar { display: none; }
+  .nav__links a { white-space: nowrap; font-size: 13px; }
+}
+
 @media (max-width: 600px) {
-  .hero { padding: 56px 20px 72px; }
-  .section { padding: 64px 20px; }
+  .hero { padding: 48px 20px 64px; }
+  .section { padding: 56px 20px; }
   .section--alt > * { padding-left: 20px; padding-right: 20px; }
   .hero__meta { gap: 24px; }
-  .details li { grid-template-columns: 48px 1fr; gap: 14px; }
+  .details li { grid-template-columns: 44px 1fr; column-gap: 14px; }
+  .details__num { font-size: 26px; }
   .qa-item { padding: 20px; grid-template-columns: 44px 1fr; gap: 14px; }
   .qa-item__icon { width: 40px; height: 40px; font-size: 24px; }
+  .placeholder { padding: 18px; }
+  .placeholder .material-symbols-rounded { font-size: 34px; }
+  .placeholder__name { font-size: 11px; }
+  .placeholder__desc { font-size: 12px; }
+  .block--feature { padding: 24px 20px; }
+  .achievement, .lesson, .qa-item, .trait { padding: 22px; }
 }
