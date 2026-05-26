@@ -856,11 +856,16 @@ body.no-scroll { overflow: hidden; }
     border-bottom: 1px solid var(--line-soft);
   }
   .nav__links a {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 18px;
     padding: 18px 4px;
     font-size: 18px;
     font-weight: 700;
     color: var(--ink);
+  }
+  .nav__links a .material-symbols-rounded {
+    font-size: 22px;
   }
 }
 
