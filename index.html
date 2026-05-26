@@ -591,6 +591,7 @@
       if (!nav) return;
       let lastY = window.scrollY;
       let ticking = false;
+      let suppressHide = false; // 錨點跳轉中暫時不隱藏
 
       const update = () => {
         const y = window.scrollY;
@@ -604,6 +605,9 @@
         // 接近頁面頂部時永遠顯示
         const threshold = window.innerHeight * 0.8;
         if (y < threshold) {
+          nav.classList.remove('nav--hidden');
+        } else if (suppressHide) {
+          // 錨點跳轉中，只更新 lastY，不改變顯示狀態
           nav.classList.remove('nav--hidden');
         } else if (y > lastY + 4) {
           // 往下滾 → 隱藏
@@ -635,6 +639,23 @@
           mouseTick = false;
         });
       }, { passive: true });
+
+      // 點擊導航錨點 → 暫停自動隱藏，等使用者實際滾動才恢復
+      document.querySelectorAll('.nav__links a[href^="#"]').forEach(a => {
+        a.addEventListener('click', () => {
+          suppressHide = true;
+        });
+      });
+      // 偵測使用者主動滾動 → 恢復自動隱藏
+      const reactivate = () => { suppressHide = false; };
+      window.addEventListener('wheel', reactivate, { passive: true });
+      window.addEventListener('touchmove', reactivate, { passive: true });
+      window.addEventListener('keydown', (e) => {
+        // 方向鍵 / Page Up/Down / Home/End / Space
+        if (['ArrowUp','ArrowDown','PageUp','PageDown','Home','End',' '].includes(e.key)) {
+          reactivate();
+        }
+      });
     })();
   </script>
 
