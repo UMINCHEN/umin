@@ -585,7 +585,7 @@
       targets.forEach(el => io.observe(el));
     })();
 
-    // ============== 導航列：下滾隱藏 / 上滾顯示 ==============
+    // ============== 導航列：下滾隱藏 / 上滾顯示 / 滑鼠上緣喚回 ==============
     (function () {
       const nav = document.getElementById('nav');
       if (!nav) return;
@@ -621,6 +621,19 @@
           requestAnimationFrame(update);
           ticking = true;
         }
+      }, { passive: true });
+
+      // 滑鼠移到畫面上方四分之一 → 喚回導航
+      let mouseTick = false;
+      window.addEventListener('mousemove', (e) => {
+        if (mouseTick) return;
+        mouseTick = true;
+        requestAnimationFrame(() => {
+          if (e.clientY <= window.innerHeight * 0.25) {
+            nav.classList.remove('nav--hidden');
+          }
+          mouseTick = false;
+        });
       }, { passive: true });
     })();
   </script>
