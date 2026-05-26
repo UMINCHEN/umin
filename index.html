@@ -584,6 +584,45 @@
 
       targets.forEach(el => io.observe(el));
     })();
+
+    // ============== 導航列：下滾隱藏 / 上滾顯示 ==============
+    (function () {
+      const nav = document.getElementById('nav');
+      if (!nav) return;
+      let lastY = window.scrollY;
+      let ticking = false;
+
+      const update = () => {
+        const y = window.scrollY;
+        // 漢堡選單開啟時永遠顯示
+        if (nav.classList.contains('nav--open')) {
+          nav.classList.remove('nav--hidden');
+          lastY = y;
+          ticking = false;
+          return;
+        }
+        // 接近頁面頂部時永遠顯示
+        const threshold = window.innerHeight * 0.8;
+        if (y < threshold) {
+          nav.classList.remove('nav--hidden');
+        } else if (y > lastY + 4) {
+          // 往下滾 → 隱藏
+          nav.classList.add('nav--hidden');
+        } else if (y < lastY - 4) {
+          // 往上滾 → 顯示
+          nav.classList.remove('nav--hidden');
+        }
+        lastY = y;
+        ticking = false;
+      };
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(update);
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
   </script>
 
 </body>
