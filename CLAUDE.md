@@ -7,13 +7,12 @@
 ## 專案基本資訊
 
 - **用途**：UI/UX 設計師個人作品集（單頁式網站）
-- **本機路徑**：`C:/Users/uuu01/Desktop/portfolio/`
-- **GitHub**：https://github.com/UMINCHEN/umin
-- **線上預覽**：https://uminchen.github.io/umin/ （GitHub Pages，main 分支根目錄）
+- **本機路徑**：`C:/Users/User/Desktop/uminportfolio/`
+- **GitHub**：https://github.com/UMINCHEN/uminportfolio
+- **線上預覽**：https://uminchen.github.io/uminportfolio/ （GitHub Pages，main 分支根目錄）
 - **檔案結構**：
   - `index.html` — 單一頁面，所有區段
   - `style.css` — 全部樣式
-  - `IMAGE_GUIDE.md` — 圖片佔位符命名規則
   - `images/` — 圖片資料夾（user 自行放圖）
 
 ---
@@ -42,15 +41,6 @@
 - **平板以下**（≤720px）：漢堡選單，點任一連結自動關閉
 - Logo `UMIN` 永遠在左
 
-### 區段架構
-1. Hero（首頁）
-2. **01 背景與優勢**
-3. **02 核心專案 : 安防AIOT生態系**（含挑戰、產品思維、設計系統、實務 UX 等子主題）
-4. **03 其他專案**
-5. **04 反思與展望**
-6. 感謝頁（footer，深色底）
-- **沒有 Q&A 區塊**（已移除，不要加回去）
-
 ### 「挑戰」區塊特殊樣式
 - 深色底（`#2A1F18`），淺色文字
 - 標題上方**不要有 icon + 小字標籤**（其他區塊有的那種 `<div class="block__label">` 結構在挑戰區要省略）
@@ -70,27 +60,19 @@
 
 ## 開發用檔案
 
-- `design-system.html` 是開發時參考的設計系統 token 與元件展示頁
-- **不要從 `index.html` 連結過去**（這是給設計師自己開發時看的，不對外）
-- 之後若有其他工具型 / 內部頁，也比照辦理：建在專案內，但不對作品集本身曝光
+- `design-system.html`：設計系統 token 展示，僅供開發參考，**不對外連結**
 
 ## 圖片管理
 
-詳見 `IMAGE_GUIDE.md`。重點規則：
-
 - **命名格式**：`{區段前綴}-{主題}-{編號}.{副檔名}`
 - **前綴**：`hero-` / `intro-` / `career-` / `philosophy-` / `aiot-` / `aiot-detail-NN-` / `other-` / `reflection-`
-- **佔位符**：HTML 用 `<div class="placeholder" data-name="檔名">…</div>`
-- 替換真實圖片時，把該 `<div>` 換成 `<img src="images/檔名" />`
-- 不存在的圖會顯示虛線佔位框，不影響其他內容
+- 替換圖片：把 `<div class="placeholder" data-name="檔名">` 換成 `<img src="images/檔名" />`
 
 ---
 
 ## 雙語/i18n 狀態
 
-- **目前只有繁體中文**
-- 使用者考慮過雙語但暫不實作（內容尚未定稿）
-- 未來若實作，傾向用 `?lang=en` query parameter 方案 + JS 字典 + localStorage 記憶偏好
+- **目前只有繁體中文**，未來考慮 `?lang=en` + JS 字典方案，暫不實作
 
 ---
 
