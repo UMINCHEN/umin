@@ -212,8 +212,33 @@ body.no-scroll { overflow: hidden; }
   font-size: 18px;
   font-weight: 400;
   color: var(--ink-2);
-  margin: 0 0 40px;
+  margin: 0 0 32px;
   max-width: 520px;
+}
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 24px;
+  background: var(--accent);
+  color: #FAF4EA;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  border-radius: var(--r-sm);
+  transition: background 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero__cta:hover {
+  background: #a84a28;
+  transform: translateY(-2px);
+}
+.hero__cta .material-symbols-rounded {
+  font-size: 18px;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero__cta:hover .material-symbols-rounded {
+  transform: translateY(3px);
 }
 .hero__meta {
   display: flex;
