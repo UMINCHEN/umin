@@ -1,78 +1,64 @@
-# UMIN Portfolio — Project Memory
+# UMIN Portfolio - Project Memory
 
-這份文件記錄了專案的設計準則、使用者偏好與既有決策，供未來任何 Claude session 沿用。
+這份文件記錄專案的設計準則、使用者偏好與既有決策，供未來任何 Claude session 沿用。
+**完整設計系統（token / 元件）請看 [`design.md`](design.md)。**
 
 ---
 
 ## 專案基本資訊
 
-- **用途**：UI/UX 設計師個人作品集（單頁式網站）
-- **本機路徑**：`C:/Users/User/Desktop/uminportfolio/`
+- **用途**：產品設計師個人作品集（單頁式網站）
+- **本機路徑**：`C:/Users/USER/Desktop/uminportfolio/`
 - **GitHub**：https://github.com/UMINCHEN/uminportfolio
 - **線上預覽**：https://uminchen.github.io/uminportfolio/ （GitHub Pages，main 分支根目錄）
 - **檔案結構**：
-  - `index.html` — 單一頁面，所有區段
-  - `style.css` — 全部樣式
-  - `images/` — 圖片資料夾（user 自行放圖）
+  - `index.html` - 單一頁面，所有區段 + 全螢幕彈窗
+  - `style.css` - 全部樣式（token 定義於 `:root`）
+  - `design.md` - 設計系統文件（token、元件、規則）
+  - `images/` - 圖片資料夾（user 自行放圖）
+  - `design-system.html` - **已過時**（舊暖色版的 token 展示，未對外連結；新系統請以 `design.md` 為準）
 
 ---
 
-## 設計原則（不可違背）
+## 設計方向（2026 改版：像素 / 深色暖調 / 軍綠）
 
-### 視覺風格
-- **暖色系**：背景 `#FAF4EA`（暖奶油），交替區段 `#F3E9D7`，主色 `#C45A33`（陶土橘紅）
-- **淺色底**：白底或暖米色，不用深色底（除了「挑戰」區塊與最末感謝頁）
-- **標題粗體**：使用 `font-weight: 900`，搭配負字距 `letter-spacing: -0.01em ~ -0.02em`
-- **簡潔**：留白充足，無多餘裝飾
-- **避免 AI 套版感**：不用漸層背景、不用 emoji 裝飾、不對稱版面、編輯風格的大號區段編號
-- **字體**：Noto Sans TC（黑體），不用襯線字體
-- **Icon**：Material Symbols Rounded **必須是 fill 版本**（`FILL=1`），不要 outline
+> 舊版是暖奶油 + 陶土橘的淺色風，已整站重做。以下為現行方向，細節見 `design.md`。
+
+- **深色暖色系**：底 `#16150F`（暖近黑），面板 `#1E1C13`。不用純黑。
+- **主色 = 低飽和軍綠**（唯一強調色，全站一致）：填色 `#767C4E`、深底強調 `#B0B87A`。
+- **像素 / retro**：全站直角、硬陰影 `4px 4px 0`；按鈕、標籤、圖示、大數字都是像素風。
+- **字體**：Noto Sans TC（內文 / 標題，標題 900 + 負字距）；Press Start 2P **只用在大數字**（年份、`5`、`6`、步驟編號、logo）。中文不套像素字。
+- **像素圖示**：內嵌 SVG sprite（`shape-rendering: crispEdges`），隨字色。
+- **減少動畫**：只有 `:hover`/`:active` 與彈窗淡入，並支援 `prefers-reduced-motion`。
+- **避免 AI 套版**（承 taste-skill）：不用漸層、外發光、玻璃擬態、AI 紫、裝飾性圓點、scroll 提示、版本標籤。
+- **不用 em-dash `—`**：用一般 `-` 或全形 `｜`。
 
 ### 內容處理
-- **⚠️ 絕對不要修改任何使用者寫的文字**（即使有刪除線、特殊符號、口語化句子都保留）
-- 例：`~~馬上就要~~` 刪除線要保留、`>` 大於符號要保留
+- **⚠️ 絕對不要修改任何使用者寫的文字**（口語、標點、特殊符號都保留，例：「哩賀!」「歡迎常來坐!」）。
 
 ---
 
 ## 既有功能與行為
 
-### 導覽列
-- **桌面版**（>720px）：顯示完整文字選單，**不顯示 01/02/03/04 編號**
-- **平板以下**（≤720px）：漢堡選單，點任一連結自動關閉
-- Logo `UMIN` 永遠在左
-
-### 「挑戰」區塊特殊樣式
-- 深色底（`#2A1F18`），淺色文字
-- 標題上方**不要有 icon + 小字標籤**（其他區塊有的那種 `<div class="block__label">` 結構在挑戰區要省略）
-
-### 動畫
-- 區段標題與內容滾動到畫面時 **純淡入**（opacity 0 → 1）
-- **不可有方向位移**（不要 translateY、不要 translateX）
-- 1 秒緩動，使用 cubic-bezier(0.22, 1, 0.36, 1)
-- 不加 `prefers-reduced-motion` 限制（一定要播放）
-
-### 容器對齊
-- 所有區塊（包含 `.grid-2`、`.block--feature`、`.block--challenge`）都必須**水平置中**且**左右對齊上方 section_head**
-- 不要用 `margin: 0` 否則會破壞 `.section--alt > *` 的 auto-centering
-- 統一用 `margin: Xpx auto`
+- **導覽列**：固定頂部、永遠可見（不做隨捲動隱藏）。桌面單行：logo(UMIN) + 關於我 / 專案 / 聯絡 + 下載履歷按鈕；`≤720px` 為漢堡選單，點連結自動關閉。
+- **Hero（關於我）**：左右分割（文字 + 形象照佔位），含 hashtag chips、下載履歷、經歷與優勢（開彈窗）。
+- **專案**：長方卡片、圖片與文字**左右交錯**，每張含年份（像素）、標題、描述、標籤、按鈕。
+- **全螢幕彈窗（滿版）**：「了解更多 / 經歷與優勢」用 `.modal` 開啟，**不跳頁**；可點背景 / 關閉鈕 / `Esc` 關閉。
+- **圖片佔位 `.ph`**：斜紋 + 虛線 + 像素檔名，等 user 換成 `<img>`。
 
 ---
-
-## 開發用檔案
-
-- `design-system.html`：設計系統 token 展示，僅供開發參考，**不對外連結**
 
 ## 圖片管理
 
-- **命名格式**：`{區段前綴}-{主題}-{編號}.{副檔名}`
-- **前綴**：`hero-` / `intro-` / `career-` / `philosophy-` / `aiot-` / `aiot-detail-NN-` / `other-` / `reflection-`
-- 替換圖片：把 `<div class="placeholder" data-name="檔名">` 換成 `<img src="images/檔名" />`
+- **命名格式**：`{區段前綴}-{主題}.{副檔名}`
+- **前綴**：`hero-`（形象照）/ `work-{專案}-cover`（卡片封面）/ `work-{專案}-{主題}`（彈窗內案例圖）
+- 替換圖片：把 `<figure class="ph …" data-name="檔名">…</figure>` 換成 `<img src="images/檔名" alt="…" />`
 
 ---
 
-## 雙語/i18n 狀態
+## 雙語 / i18n 狀態
 
-- **目前只有繁體中文**，未來考慮 `?lang=en` + JS 字典方案，暫不實作
+- **目前只有繁體中文**，未來考慮 `?lang=en` + JS 字典方案，暫不實作。
 
 ---
 
@@ -80,7 +66,7 @@
 
 - **預設行為：每次完成修改後直接 commit + push 到 `main`，不需要再問使用者**
 - Commit message 用簡明英文，描述「為什麼」改而不是「改了什麼」
-- GitHub Pages 會自動部署，約 1–2 分鐘生效
+- GitHub Pages 會自動部署，約 1-2 分鐘生效
 - 帳號為 `UMINCHEN`
 - 例外：如果修改範圍很大、或涉及破壞性操作（刪除大量內容、改動架構），先確認再推
 
@@ -88,17 +74,8 @@
 
 ## 對話風格偏好（與使用者互動）
 
-- 使用者是 UI/UX 設計師，**不是工程師**
+- 使用者是產品 / UI/UX 設計師，**不是工程師**
 - 用視覺與設計語言溝通，少用艱深技術術語
 - 重視美感與細節
 - 修完問題後簡短報告：改了什麼、為什麼、線上連結
-- 不必每次都長篇大論，**重點明確即可**
-
----
-
-## 已知技術細節（避免再次踩坑）
-
-- `.placeholder` 同時擁有 `--wide` 與 `--tall` class 時，後者會覆蓋前者的 `aspect-ratio`。**解法**：`.placeholder--tall:not(.placeholder--wide) { aspect-ratio: 4/5; }`
-- `.details li` 是 grid `64px 1fr`，placeholder 必須加 `grid-column: 1 / -1` 才會跨欄
-- `.section--alt > *` 的 `margin: auto` 會被子層的 `margin: Xpx 0` 覆蓋；用 `margin: Xpx auto` 才不會破壞置中
-- Material Symbols 一定要載入 `FILL=1` 變數，否則圖示是 outline
+- 重點明確即可，不必長篇大論

@@ -3,711 +3,503 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UMIN — UI/UX 作品集</title>
+  <title>UMIN｜產品設計師作品集</title>
+  <meta name="description" content="陳宥銘 UMIN｜產品設計師。約 5 年數位產品設計經驗，專注 B2B 系統、複雜流程與資料密集型產品，具 Web、Desktop、App 跨平台經驗。" />
+  <meta name="color-scheme" content="dark" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,1,0" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Press+Start+2P&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
-  <!-- ============== NAV ============== -->
+  <!-- ============================================================
+       PIXEL ICON SPRITE
+       These are simple grid-aligned geometric marks (pixel-art icons),
+       drawn on a 16-unit grid with shape-rendering:crispEdges so they
+       stay crunchy at any size. Deliberate aesthetic choice for the
+       retro/pixel brief; not a stand-in for a stroke-icon library.
+  ============================================================ -->
+  <svg width="0" height="0" class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-menu" viewBox="0 0 16 16" shape-rendering="crispEdges">
+      <rect x="2" y="3" width="12" height="2"/><rect x="2" y="7" width="12" height="2"/><rect x="2" y="11" width="12" height="2"/>
+    </symbol>
+    <symbol id="i-close" viewBox="0 0 16 16" shape-rendering="crispEdges">
+      <rect x="3" y="3" width="2" height="2"/><rect x="5" y="5" width="2" height="2"/><rect x="7" y="7" width="2" height="2"/><rect x="9" y="9" width="2" height="2"/><rect x="11" y="11" width="2" height="2"/>
+      <rect x="11" y="3" width="2" height="2"/><rect x="9" y="5" width="2" height="2"/><rect x="5" y="9" width="2" height="2"/><rect x="3" y="11" width="2" height="2"/>
+    </symbol>
+    <symbol id="i-download" viewBox="0 0 16 16" shape-rendering="crispEdges">
+      <rect x="7" y="2" width="2" height="5"/>
+      <rect x="3" y="7" width="10" height="2"/><rect x="5" y="9" width="6" height="2"/><rect x="7" y="11" width="2" height="2"/>
+      <rect x="3" y="13" width="10" height="2"/>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 16 16" shape-rendering="crispEdges">
+      <rect x="2" y="7" width="9" height="2"/>
+      <rect x="9" y="5" width="2" height="2"/><rect x="11" y="7" width="2" height="2"/><rect x="9" y="9" width="2" height="2"/>
+    </symbol>
+    <symbol id="i-mail" viewBox="0 0 16 16" shape-rendering="crispEdges">
+      <rect x="3" y="4" width="10" height="2"/><rect x="3" y="11" width="10" height="2"/><rect x="3" y="4" width="2" height="9"/><rect x="11" y="4" width="2" height="9"/>
+      <rect x="5" y="6" width="2" height="2"/><rect x="7" y="8" width="2" height="2"/><rect x="9" y="6" width="2" height="2"/>
+    </symbol>
+    <symbol id="i-plus" viewBox="0 0 16 16" shape-rendering="crispEdges">
+      <rect x="7" y="3" width="2" height="10"/><rect x="3" y="7" width="10" height="2"/>
+    </symbol>
+    <symbol id="i-infinity" viewBox="0 0 22 12" shape-rendering="crispEdges">
+      <!-- two linked hollow squares = loop / 無限 motif -->
+      <rect x="1" y="1" width="8" height="2"/><rect x="1" y="9" width="8" height="2"/><rect x="1" y="1" width="2" height="10"/><rect x="7" y="1" width="2" height="10"/>
+      <rect x="13" y="1" width="8" height="2"/><rect x="13" y="9" width="8" height="2"/><rect x="13" y="1" width="2" height="10"/><rect x="19" y="1" width="2" height="10"/>
+      <rect x="7" y="5" width="6" height="2"/>
+    </symbol>
+  </svg>
+
+  <!-- ============================================================ NAV ============================================================ -->
   <nav class="nav" id="nav">
     <div class="nav__inner">
-      <a href="#top" class="nav__logo">UMIN</a>
-      <button class="nav__toggle" id="navToggle" aria-label="開啟選單" aria-expanded="false" aria-controls="navLinks">
-        <span class="nav__toggle-bar"></span>
-        <span class="nav__toggle-bar"></span>
-        <span class="nav__toggle-bar"></span>
+      <a href="#about" class="nav__logo">UMIN</a>
+
+      <button class="nav__toggle" id="navToggle" aria-label="開啟選單" aria-expanded="false" aria-controls="navMenu">
+        <svg class="ico ico--menu" aria-hidden="true"><use href="#i-menu"/></svg>
+        <svg class="ico ico--x" aria-hidden="true"><use href="#i-close"/></svg>
       </button>
-      <ul class="nav__links" id="navLinks">
-        <li><a href="#section-01"><span class="material-symbols-rounded">person</span>背景與優勢</a></li>
-        <li><a href="#section-02"><span class="material-symbols-rounded">bookmark</span>核心專案</a></li>
-        <li><a href="#section-03"><span class="material-symbols-rounded">hub</span>跨領域專案</a></li>
-        <li><a href="#section-04"><span class="material-symbols-rounded">rocket_launch</span>展望</a></li>
-      </ul>
+
+      <div class="nav__menu" id="navMenu">
+        <a href="#about" class="nav__link">關於我</a>
+        <a href="#work" class="nav__link">專案</a>
+        <a href="#contact" class="nav__link">聯絡</a>
+        <a href="https://drive.google.com/file/d/1GXfioWyQ6EBkZTVLCT1Z5Gu1c9mbMaPH/view?usp=drive_link" class="btn btn--sm nav__cta" target="_blank" rel="noopener">
+          下載履歷 <svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>
+        </a>
+      </div>
     </div>
   </nav>
 
-  <!-- ============== HERO ============== -->
-  <header id="top" class="hero">
-    <div class="hero__grid">
-      <div class="hero__text">
-        <h1 class="hero__title">
-          哩賀!<br />
-          我是<span class="hero__title--accent">UMIN</span>
-        </h1>
-        <p class="hero__sub">
-          我是具備跨平台AIoT產品經驗的設計師，<br />
-          專注於複雜系統與產品流程，擅長將抽象需求轉化為可落地的設計方案。
-        </p>
-        <a href="#section-01" class="hero__cta">
-          查看作品 <span class="material-symbols-rounded">south</span>
-        </a>
-      </div>
-      <div class="hero__visual">
-        <!-- IMAGE: hero-portrait.jpg -->
-        <div class="placeholder placeholder--portrait" data-name="hero-portrait.jpg">
-          <span class="material-symbols-rounded">account_circle</span>
-          <span class="placeholder__name">hero-portrait.jpg</span>
-          <span class="placeholder__desc">自我形象照 / 工作照</span>
-        </div>
-      </div>
-    </div>
-  </header>
+  <main>
 
-  <!-- ============== SECTION 01 — 背景與優勢 ============== -->
-  <section id="section-01" class="section">
-    <div class="section__head">
-      <div class="section__num">01</div>
-      <div>
-        <p class="section__kicker">SECTION ONE</p>
-        <h2 class="section__title">背景與優勢</h2>
-      </div>
-    </div>
+    <!-- ============================================================ HERO / 關於我 ============================================================ -->
+    <header id="about" class="hero">
+      <div class="wrap hero__grid">
+        <div class="hero__text">
+          <p class="hero__hi">哩賀!</p>
+          <h1 class="hero__title">我是 <span class="hero__name">UMIN</span></h1>
+          <p class="hero__sub">具約 <span class="pixel-num pixel-num--inline">5</span> 年數位產品設計經驗，專注 B2B 系統、複雜流程與資料密集型產品，具 Web、Desktop、App 跨平台產品經驗。</p>
 
-    <!-- 自我介紹 -->
-    <div class="block">
-      <div class="block__label">
-        <span class="material-symbols-rounded">person</span>
-        <span>自我介紹</span>
-      </div>
-      <div class="block__body">
-        <h3 class="block__heading">專業背景</h3>
-        <div class="placeholder placeholder--wide" data-name="intro-photo.jpg">
-          <span class="material-symbols-rounded">image</span>
-          <span class="placeholder__name">intro-photo.jpg</span>
-          <span class="placeholder__desc">個人照或工作環境照</span>
-        </div>
-      </div>
-    </div>
+          <ul class="tags hero__tags">
+            <li class="tag">#Fintech</li>
+            <li class="tag">#B2B</li>
+            <li class="tag">#AIoT</li>
+            <li class="tag">#跨平台產品</li>
+            <li class="tag">#複雜系統</li>
+            <li class="tag">#設計系統</li>
+            <li class="tag">#LLM</li>
+          </ul>
 
-    <!-- 經歷時間軸 -->
-    <div class="block">
-      <div class="block__label">
-        <span class="material-symbols-rounded">timeline</span>
-        <span>經歷</span>
-      </div>
-      <div class="block__body">
-        <h3 class="block__heading">時間軸</h3>
-        <div class="placeholder placeholder--wide placeholder--tall" data-name="career-timeline.jpg">
-          <span class="material-symbols-rounded">view_timeline</span>
-          <span class="placeholder__name">career-timeline.jpg</span>
-          <span class="placeholder__desc">職涯時間軸圖（橫向）</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 過去成就 -->
-    <div class="block">
-      <div class="block__label">
-        <span class="material-symbols-rounded">workspace_premium</span>
-        <span>過去成就</span>
-      </div>
-      <div class="block__body">
-        <div class="achievements">
-          <article class="achievement">
-            <div class="achievement__num">01</div>
-            <p>設計 AIoT的跨平台 (Web/desktop/Mobile) 生態系產品，並建立團隊工作流程</p>
-          </article>
-          <article class="achievement">
-            <div class="achievement__num">02</div>
-            <p>建立並持續維護跨產品設計系統</p>
-          </article>
-          <article class="achievement">
-            <div class="achievement__num">03</div>
-            <p>提升版面一致性，減少40%開發成本 (以頁面與功能盤點)</p>
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <!-- 特質 -->
-    <div class="block">
-      <div class="block__label">
-        <span class="material-symbols-rounded">psychology</span>
-        <span>特質</span>
-      </div>
-      <div class="block__body">
-        <div class="traits">
-          <div class="trait">
-            <span class="material-symbols-rounded">visibility</span>
-            <p>喜歡觀察 &gt; 思考 &gt; 討論</p>
-          </div>
-          <div class="trait">
-            <span class="material-symbols-rounded">bolt</span>
-            <p>能快速掌握新知識</p>
+          <div class="hero__actions">
+            <a href="https://drive.google.com/file/d/1GXfioWyQ6EBkZTVLCT1Z5Gu1c9mbMaPH/view?usp=drive_link" class="btn btn--primary" target="_blank" rel="noopener">
+              下載履歷 <svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>
+            </a>
+            <button class="btn" data-modal="m-bio">
+              經歷與優勢 <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg>
+            </button>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- 理念 -->
-    <div class="block block--philosophy">
-      <div class="block__label">
-        <span class="material-symbols-rounded">auto_awesome</span>
-        <span>理念</span>
-      </div>
-      <div class="block__body block__body--center">
-        <h3 class="block__heading block__heading--xl">如何解決問題？</h3>
-        <div class="placeholder placeholder--infinity" data-name="philosophy-infinity.svg">
-          <span class="material-symbols-rounded">all_inclusive</span>
-          <span class="placeholder__name">philosophy-infinity.svg</span>
-          <span class="placeholder__desc">無限圖騰 / 循環圖示</span>
+        <div class="hero__visual">
+          <figure class="ph ph--portrait" data-name="hero-portrait.jpg">
+            <figcaption class="ph__name">hero-portrait.jpg</figcaption>
+            <span class="ph__desc">形象照 / 工作照</span>
+          </figure>
         </div>
       </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- ============== SECTION 02 — 核心專案 ============== -->
-  <section id="section-02" class="section section--alt">
-    <div class="section__head">
-      <div class="section__num">02</div>
-      <div>
-        <p class="section__kicker">SECTION TWO · CORE PROJECT</p>
-        <h2 class="section__title">核心專案 : 安防AIOT生態系</h2>
-      </div>
-    </div>
-
-    <!-- 封面 -->
-    <div class="placeholder placeholder--cover" data-name="aiot-cover.jpg">
-      <span class="material-symbols-rounded">videocam</span>
-      <span class="placeholder__name">aiot-cover.jpg</span>
-      <span class="placeholder__desc">專案主視覺 / 產品全家福</span>
-    </div>
-
-    <!-- 背景 / 目標 -->
-    <div class="grid-2">
-      <div class="card card--bg">
-        <div class="card__label">
-          <span class="material-symbols-rounded">description</span>
-          <span>背景</span>
+    <!-- ============================================================ 專案 ============================================================ -->
+    <section id="work" class="work">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 class="section-title">專案</h2>
+          <p class="section-note">B2B 系統、AIoT、研究與品牌，共 <span class="pixel-num pixel-num--inline">5</span> 件。</p>
         </div>
-        <p class="card__text">規格 / 時間</p>
-      </div>
-      <div class="card card--bg">
-        <div class="card__label">
-          <span class="material-symbols-rounded">flag</span>
-          <span>目標</span>
-        </div>
-        <p class="card__text">建置AIoT產品生態系</p>
-      </div>
-    </div>
 
-    <!-- 與團隊的協作 -->
-    <div class="block">
-      <div class="block__label">
-        <span class="material-symbols-rounded">groups</span>
-        <span>與團隊的協作</span>
-      </div>
-      <div class="block__body">
-        <ol class="steps">
-          <li><span class="steps__num">1</span><p>競品分析 &gt; 定義功能表 &gt; 與後端主管討論可行性與必要功能</p></li>
-          <li><span class="steps__num">2</span><p>與韌體協調平衡點</p></li>
-          <li><span class="steps__num">3</span><p>主導設計系統，並與另一位設計師分工設計版面</p></li>
-          <li><span class="steps__num">4</span><p>提早交付UI，並建立新工作流 (解決工程師排隊等討論)</p></li>
-        </ol>
-        <div class="placeholder placeholder--wide" data-name="aiot-team-collab.jpg">
-          <span class="material-symbols-rounded">hub</span>
-          <span class="placeholder__name">aiot-team-collab.jpg</span>
-          <span class="placeholder__desc">團隊協作流程圖</span>
-        </div>
-      </div>
-    </div>
+        <div class="work-list">
 
-    <!-- 挑戰 -->
-    <div class="block block--challenge">
-      <div class="block__body">
-        <h3 class="block__heading">挑戰</h3>
-        <ul class="challenges">
-          <li>
-            <span class="material-symbols-rounded">priority_high</span>
-            <p>沒有PM&amp;需求模糊&amp;沒有規格書，溝通成本極高</p>
-          </li>
-          <li>
-            <span class="material-symbols-rounded">priority_high</span>
-            <p>公司沒有使用者研究與收集數據的文化</p>
-          </li>
-          <li>
-            <span class="material-symbols-rounded">priority_high</span>
-            <p>雖有既有產品，但各產品間操作與外觀不一致</p>
-          </li>
-          <li class="challenges__strike">
-            <span class="material-symbols-rounded">priority_high</span>
-            <p><s>馬上就要</s></p>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- 產品思維 -->
-    <div class="block block--feature">
-      <div class="block__label">
-        <span class="material-symbols-rounded">insights</span>
-        <span>主題一</span>
-      </div>
-      <div class="block__body">
-        <h3 class="block__heading">產品思維</h3>
-        <ul class="bullets">
-          <li>競品分析，制定生態系中不同產品商業定位</li>
-          <li>收斂模糊需求，以頻率與重要度設計功能架構</li>
-        </ul>
-        <div class="placeholder placeholder--wide" data-name="aiot-product-thinking.jpg">
-          <span class="material-symbols-rounded">analytics</span>
-          <span class="placeholder__name">aiot-product-thinking.jpg</span>
-          <span class="placeholder__desc">競品分析表 / 功能架構圖</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 設計系統與團隊協作 -->
-    <div class="block block--feature">
-      <div class="block__label">
-        <span class="material-symbols-rounded">grid_view</span>
-        <span>主題二</span>
-      </div>
-      <div class="block__body">
-        <h3 class="block__heading">設計系統與團隊協作</h3>
-        <ul class="bullets">
-          <li>建立跨平台設計系統與一致性規範</li>
-          <li>導入語意化命名與多語系彈性版面</li>
-          <li>建立協作流程，降低60%團隊溝通成本</li>
-        </ul>
-        <div class="placeholder placeholder--wide" data-name="aiot-design-system.jpg">
-          <span class="material-symbols-rounded">palette</span>
-          <span class="placeholder__name">aiot-design-system.jpg</span>
-          <span class="placeholder__desc">設計系統元件 / token 一覽</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 實務導向的使用者體驗 -->
-    <div class="block block--feature">
-      <div class="block__label">
-        <span class="material-symbols-rounded">touch_app</span>
-        <span>主題三</span>
-      </div>
-      <div class="block__body">
-        <h3 class="block__heading">實務導向的使用者體驗</h3>
-        <ul class="bullets">
-          <li>為高密度資訊場景設計操作介面</li>
-          <li>轉換複雜邏輯為順暢的體驗，如帳號權限、排程</li>
-          <li>降低設備設定與操作流程的理解成本</li>
-          <li>資料送出邏輯優化</li>
-          <li>探索 LLM 在操作預測與除錯流程中的應用</li>
-        </ul>
-
-        <h4 class="block__subheading">展開細節</h4>
-        <ol class="details">
-          <li>
-            <span class="details__num">01</span>
-            <p>研究競品收集數據，以"人"的角度重新分類功能 : 收斂混亂需求並制定功能架構</p>
-            <div class="placeholder placeholder--detail" data-name="aiot-detail-01-research.jpg">
-              <span class="material-symbols-rounded">manage_search</span>
-              <span class="placeholder__name">aiot-detail-01-research.jpg</span>
-              <span class="placeholder__desc">研究 / 功能架構圖</span>
+          <!-- 01 AIoT -->
+          <article class="work-card">
+            <figure class="ph ph--cover" data-name="work-aiot-cover.jpg">
+              <figcaption class="ph__name">work-aiot-cover.jpg</figcaption>
+              <span class="ph__desc">產品主視覺 / 跨平台全家福</span>
+            </figure>
+            <div class="work-card__body">
+              <span class="pixel-num work-card__year">2026</span>
+              <h3 class="work-card__title">AIoT 產品設計｜安防與智慧工地系統</h3>
+              <p class="work-card__desc">主導 B2B AIoT 產品設計，涵蓋 Web、Desktop 與 App。負責複雜權限、設備控制、即時監控與告警流程，並定義 LLM 功能互動；同時建立跨產品設計系統，降低約 <strong>30%</strong> 開發與迭代成本。</p>
+              <ul class="tags">
+                <li class="tag">B2B</li><li class="tag">AIoT</li><li class="tag">LLM</li><li class="tag">設計系統</li>
+              </ul>
+              <div class="work-card__actions">
+                <button class="btn" data-modal="m-aiot">了解更多 <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></button>
+              </div>
             </div>
-          </li>
-          <li>
-            <span class="details__num">02</span>
-            <p>建立即時工作流，產出高規格文件，成功<strong>降低 60% 溝通成本</strong>。</p>
-            <div class="placeholder placeholder--detail" data-name="aiot-detail-02-workflow.jpg">
-              <span class="material-symbols-rounded">conversion_path</span>
-              <span class="placeholder__name">aiot-detail-02-workflow.jpg</span>
-              <span class="placeholder__desc">工作流程圖 / 高規格文件</span>
-            </div>
-          </li>
-          <li>
-            <span class="details__num">03</span>
-            <p>建置跨平台設計系統，打造跨平台一致的操作體驗</p>
-            <div class="placeholder placeholder--detail" data-name="aiot-detail-03-crossplatform.jpg">
-              <span class="material-symbols-rounded">devices</span>
-              <span class="placeholder__name">aiot-detail-03-crossplatform.jpg</span>
-              <span class="placeholder__desc">Web · Desktop · Mobile 一致性對照</span>
-            </div>
-          </li>
-          <li>
-            <span class="details__num">04</span>
-            <p>依據使用場景與語意化命名</p>
-            <div class="placeholder placeholder--detail" data-name="aiot-detail-04-naming.jpg">
-              <span class="material-symbols-rounded">label</span>
-              <span class="placeholder__name">aiot-detail-04-naming.jpg</span>
-              <span class="placeholder__desc">命名規則 / token 結構</span>
-            </div>
-          </li>
-          <li>
-            <span class="details__num">05</span>
-            <p>多國語系 : 建構具彈性的UI佈局策略</p>
-            <div class="placeholder placeholder--detail" data-name="aiot-detail-05-i18n.jpg">
-              <span class="material-symbols-rounded">translate</span>
-              <span class="placeholder__name">aiot-detail-05-i18n.jpg</span>
-              <span class="placeholder__desc">多語系版面對照</span>
-            </div>
-          </li>
-          <li>
-            <span class="details__num">06</span>
-            <p>失效模式 : 高對比的設備狀態斷線提示</p>
-            <div class="placeholder placeholder--detail" data-name="aiot-detail-06-failure.jpg">
-              <span class="material-symbols-rounded">wifi_off</span>
-              <span class="placeholder__name">aiot-detail-06-failure.jpg</span>
-              <span class="placeholder__desc">設備斷線 / 失效狀態</span>
-            </div>
-          </li>
-          <li>
-            <span class="details__num">07</span>
-            <p>提升使用者效率: 降低設備設定複雜度</p>
-            <div class="placeholder placeholder--detail" data-name="aiot-detail-07-efficiency.jpg">
-              <span class="material-symbols-rounded">settings</span>
-              <span class="placeholder__name">aiot-detail-07-efficiency.jpg</span>
-              <span class="placeholder__desc">設備設定流程簡化前後對照</span>
-            </div>
-          </li>
-          <li>
-            <span class="details__num">08</span>
-            <p>高易用性的app設計 : 拆分步驟</p>
-            <div class="placeholder placeholder--detail" data-name="aiot-detail-08-app.jpg">
-              <span class="material-symbols-rounded">smartphone</span>
-              <span class="placeholder__name">aiot-detail-08-app.jpg</span>
-              <span class="placeholder__desc">App 步驟拆分流程</span>
-            </div>
-          </li>
-          <li>
-            <span class="details__num">09</span>
-            <p>LLM的app : 預測使用者操作與除錯</p>
-            <div class="placeholder placeholder--detail" data-name="aiot-detail-09-llm.jpg">
-              <span class="material-symbols-rounded">smart_toy</span>
-              <span class="placeholder__name">aiot-detail-09-llm.jpg</span>
-              <span class="placeholder__desc">LLM 預測 / 除錯介面</span>
-            </div>
-          </li>
-          <li>
-            <span class="details__num">10</span>
-            <p>適時求救並建立跨平台工作流</p>
-            <div class="placeholder placeholder--detail" data-name="aiot-detail-10-workflow.jpg">
-              <span class="material-symbols-rounded">support_agent</span>
-              <span class="placeholder__name">aiot-detail-10-workflow.jpg</span>
-              <span class="placeholder__desc">跨平台協作流程示意</span>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============== SECTION 03 — 其他專案 ============== -->
-  <section id="section-03" class="section">
-    <div class="section__head">
-      <div class="section__num">03</div>
-      <div>
-        <p class="section__kicker">SECTION THREE</p>
-        <h2 class="section__title">其他專案 : 研究與跨領域能力</h2>
-      </div>
-    </div>
-
-    <div class="other-project">
-      <div class="other-project__index">01</div>
-      <div class="other-project__body">
-        <h3 class="other-project__title">複雜數據的可視化與轉譯</h3>
-        <p class="other-project__sub">工地自組儀錶板、GIS圖台</p>
-        <div class="grid-2">
-          <div class="placeholder placeholder--tall" data-name="other-dashboard.jpg">
-            <span class="material-symbols-rounded">dashboard</span>
-            <span class="placeholder__name">other-dashboard.jpg</span>
-            <span class="placeholder__desc">工地自組儀錶板畫面</span>
-          </div>
-          <div class="placeholder placeholder--tall" data-name="other-gis.jpg">
-            <span class="material-symbols-rounded">map</span>
-            <span class="placeholder__name">other-gis.jpg</span>
-            <span class="placeholder__desc">GIS 圖台介面</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="other-project">
-      <div class="other-project__index">02</div>
-      <div class="other-project__body">
-        <h3 class="other-project__title">嚴謹的 UX 研究方法論與決策推導</h3>
-        <p class="other-project__sub">NFT</p>
-        <div class="placeholder placeholder--wide placeholder--tall" data-name="other-nft.jpg">
-          <span class="material-symbols-rounded">token</span>
-          <span class="placeholder__name">other-nft.jpg</span>
-          <span class="placeholder__desc">NFT 專案研究流程 / 決策圖</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============== SECTION 04 — 反思與展望 ============== -->
-  <section id="section-04" class="section section--alt">
-    <div class="section__head">
-      <div class="section__num">04</div>
-      <div>
-        <p class="section__kicker">SECTION FOUR</p>
-        <h2 class="section__title">反思與展望</h2>
-      </div>
-    </div>
-
-    <!-- 從案子我學到什麼 -->
-    <div class="block">
-      <div class="block__label">
-        <span class="material-symbols-rounded">school</span>
-        <span>從案子我學到什麼</span>
-      </div>
-      <div class="block__body">
-        <div class="lessons">
-          <article class="lesson">
-            <div class="lesson__num">01</div>
-            <h4 class="lesson__title">主導產品決策</h4>
-            <p>早點意識到工作中的缺口並補位降低70%溝通成本</p>
           </article>
-          <article class="lesson">
-            <div class="lesson__num">02</div>
-            <h4 class="lesson__title">同步進度與過度溝通</h4>
-            <p>多展示自己的進度，多製作文件降低來回溝通成本</p>
+
+          <!-- 02 野生動物救傷 -->
+          <article class="work-card work-card--flip">
+            <figure class="ph ph--cover" data-name="work-wildlife-cover.jpg">
+              <figcaption class="ph__name">work-wildlife-cover.jpg</figcaption>
+              <span class="ph__desc">後台系統 / 案件流程畫面</span>
+            </figure>
+            <div class="work-card__body">
+              <span class="pixel-num work-card__year">2023</span>
+              <h3 class="work-card__title">B2B 系統設計｜野生動物救傷</h3>
+              <p class="work-card__desc">透過訪談與業務流程分析收斂需求，建立使用者情境，並以 Scrum 流程完成後台系統與 RWD 設計。</p>
+              <ul class="tags">
+                <li class="tag">B2B</li><li class="tag">RWD</li><li class="tag">Scrum</li>
+              </ul>
+              <div class="work-card__actions">
+                <button class="btn" data-modal="m-wildlife">了解更多 <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></button>
+              </div>
+            </div>
           </article>
+
+          <!-- 03 社區林業計畫 -->
+          <article class="work-card">
+            <figure class="ph ph--cover" data-name="work-forestry-cover.jpg">
+              <figcaption class="ph__name">work-forestry-cover.jpg</figcaption>
+              <span class="ph__desc">前台 RWD / 管理後台畫面</span>
+            </figure>
+            <div class="work-card__body">
+              <span class="pixel-num work-card__year">2023</span>
+              <h3 class="work-card__title">前後台設計｜社區林業計畫</h3>
+              <p class="work-card__desc">設計林務局社區林業計畫 RWD 前台與管理後台，兼顧大量資訊呈現、操作流程與無障礙需求，產品通過 AA 無障礙標章<a href="https://accessibility.moda.gov.tw/Applications/Detail?category=20260309105658" class="ilink" target="_blank" rel="noopener">認證</a>。</p>
+              <ul class="tags">
+                <li class="tag">RWD</li><li class="tag">Accessibility</li>
+              </ul>
+              <div class="work-card__actions">
+                <a href="https://communityforestry.forest.gov.tw/" class="btn btn--primary" target="_blank" rel="noopener">前往站台 <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <button class="btn" data-modal="m-forestry">了解更多 <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 04 NFT -->
+          <article class="work-card work-card--flip">
+            <figure class="ph ph--cover" data-name="work-nft-cover.jpg">
+              <figcaption class="ph__name">work-nft-cover.jpg</figcaption>
+              <span class="ph__desc">研究流程 / 決策架構圖</span>
+            </figure>
+            <div class="work-card__body">
+              <span class="pixel-num work-card__year">2022</span>
+              <h3 class="work-card__title">UX Case Study｜NFT 交易平台</h3>
+              <p class="work-card__desc">研究 NFT 交易平台中的信任與決策問題，重新設計資訊架構與交易體驗，協助使用者判斷 NFT 項目價值並提升平台信任感。</p>
+              <ul class="tags">
+                <li class="tag">Web3</li><li class="tag">UX Research</li>
+              </ul>
+              <div class="work-card__actions">
+                <button class="btn" data-modal="m-nft">了解更多 <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 05 匠家具 -->
+          <article class="work-card">
+            <figure class="ph ph--cover" data-name="work-gian-cover.jpg">
+              <figcaption class="ph__name">work-gian-cover.jpg</figcaption>
+              <span class="ph__desc">品牌官網主視覺</span>
+            </figure>
+            <div class="work-card__body">
+              <span class="pixel-num work-card__year">2020</span>
+              <h3 class="work-card__title">品牌網站設計｜匠家具</h3>
+              <p class="work-card__desc">負責家具品牌官方網站規劃與設計，建立一致的品牌視覺與內容架構。</p>
+              <ul class="tags">
+                <li class="tag">Brand</li><li class="tag">Web Design</li>
+              </ul>
+              <div class="work-card__actions">
+                <a href="https://www.gian-tw.com/about" class="btn btn--primary" target="_blank" rel="noopener">前往站台 <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              </div>
+            </div>
+          </article>
+
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- 未來展望 -->
-    <div class="block">
-      <div class="block__label">
-        <span class="material-symbols-rounded">rocket_launch</span>
-        <span>未來展望</span>
-      </div>
-      <div class="block__body">
-        <p class="block__paragraph">將設計系統更結構化、對接開發者</p>
-      </div>
-    </div>
+  </main>
 
-    <!-- 我如何解決設計問題 -->
-    <div class="block">
-      <div class="block__label">
-        <span class="material-symbols-rounded">lightbulb</span>
-        <span>我如何解決設計問題?</span>
+  <!-- ============================================================ 頁尾 / 聯絡 ============================================================ -->
+  <footer id="contact" class="foot">
+    <div class="wrap foot__inner">
+      <h2 class="foot__title">感謝您的時間!<br />歡迎常來坐!</h2>
+      <p class="foot__id">陳宥銘 | UMIN 產品設計師 | Fintech&amp;AIoT</p>
+      <div class="foot__actions">
+        <a href="mailto:uuu015119@gmail.com" class="btn btn--primary">聯絡我 <svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg></a>
+        <a href="https://www.linkedin.com/in/uminchen/" class="btn" target="_blank" rel="noopener">LinkedIn <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&amp;list=RDdQw4w9WgXcQ&amp;start_radio=1" class="btn btn--ghost" target="_blank" rel="noopener">前往 VIP 頁面 <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
-      <div class="block__body">
-        <p class="block__paragraph">(AI輔助，因幻覺問題未解決) &gt; 定義問題與驗證的能力比以前更重要</p>
-      </div>
-    </div>
-
-    <!-- 最喜歡的工作法 -->
-    <div class="block">
-      <div class="block__label">
-        <span class="material-symbols-rounded">brush</span>
-        <span>最喜歡的工作法</span>
-      </div>
-      <div class="block__body">
-        <p class="block__paragraph block__paragraph--lg">手繪ui版面</p>
-        <div class="placeholder placeholder--wide placeholder--tall" data-name="reflection-handsketch.jpg">
-          <span class="material-symbols-rounded">edit_note</span>
-          <span class="placeholder__name">reflection-handsketch.jpg</span>
-          <span class="placeholder__desc">手繪 UI 草稿照片</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- AI -->
-    <div class="block">
-      <div class="block__label">
-        <span class="material-symbols-rounded">network_intelligence</span>
-        <span>AI</span>
-      </div>
-      <div class="block__body">
-        <p class="block__paragraph">AI</p>
-        <div class="placeholder placeholder--wide" data-name="reflection-ai.jpg">
-          <span class="material-symbols-rounded">memory</span>
-          <span class="placeholder__name">reflection-ai.jpg</span>
-          <span class="placeholder__desc">AI 應用相關示意 / 截圖</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============== 感謝 ============== -->
-  <footer class="thanks">
-    <div class="thanks__inner">
-      <span class="material-symbols-rounded thanks__icon">favorite</span>
-      <h2 class="thanks__title">感謝您的時間!</h2>
-      <p class="thanks__sub">UMIN · UI / UX Designer · Portfolio 2026</p>
     </div>
   </footer>
 
+  <!-- ============================================================ MODALS (滿版彈窗) ============================================================ -->
+
+  <!-- 經歷與優勢 -->
+  <div class="modal" id="m-bio" hidden>
+    <div class="modal__scrim" data-close></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="m-bio-t">
+      <div class="modal__bar">
+        <span class="modal__kicker">經歷與優勢</span>
+        <button class="btn-icon modal__close" aria-label="關閉"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></button>
+      </div>
+      <div class="modal__scroll">
+        <h2 class="modal__title" id="m-bio-t">陳宥銘 Umin｜產品設計師</h2>
+
+        <ul class="checklist">
+          <li>主導需求收斂、流程設計、介面設計至開發落地</li>
+          <li>規劃權限、儀表板、告警處置等複雜功能</li>
+          <li>具 LLM / AI 功能設計經驗</li>
+          <li>建立跨 <span class="pixel-num pixel-num--inline">6</span> 項產品的 Design System</li>
+          <li>具易用性測試、訪談、問卷等研究經驗</li>
+          <li>熟悉 PM、軟硬體工程跨部門協作</li>
+        </ul>
+
+        <div class="core">
+          <span class="core__label">核心能力</span>
+          <p class="core__val">Fintech&amp;B2B Product Design｜Complex Workflow｜Design System｜AI Product (LLM)｜User Research</p>
+        </div>
+
+        <h3 class="case__h">特質</h3>
+        <div class="trait">
+          <div class="trait__mark"><svg class="ico ico--infinity" aria-hidden="true"><use href="#i-infinity"/></svg></div>
+          <p>我的設計流程：定義規格、實現設計、驗證可行性；用競品分析、平台情境、功能架構、設計系統與開發確認收斂方案。</p>
+        </div>
+        <div class="trait">
+          <p>我的工作風格：喜歡探索新技術與知識並與他人討論；包含在社群發上問卷交流、LinkedIn 寫作、同事評價。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AIoT case study -->
+  <div class="modal" id="m-aiot" hidden>
+    <div class="modal__scrim" data-close></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="m-aiot-t">
+      <div class="modal__bar">
+        <span class="modal__kicker">2026 · AIoT</span>
+        <button class="btn-icon modal__close" aria-label="關閉"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></button>
+      </div>
+      <div class="modal__scroll">
+        <h2 class="modal__title" id="m-aiot-t">AIoT 產品設計｜安防與智慧工地系統</h2>
+
+        <h3 class="case__h">背景與挑戰｜跨平台、跨設備的複雜產品生態</h3>
+        <p class="case__p">產品涵蓋 Web、Desktop、App 與不同類型的監控設備，使用者需要在多平台完成設備設定、即時監控、事件處理與權限管理。隨著產品線擴張，各系統的操作邏輯與元件逐漸產生差異，因此除了單一功能設計，也需要建立能跨產品延伸的整體架構。</p>
+
+        <h3 class="case__h">我的任務｜讓複雜系統變得可理解、可操作</h3>
+        <p class="case__p">作為主要產品設計者，我負責從需求釐清、流程設計到 UI 落地，並與 PM、前後端及韌體工程師協作。設計範圍涵蓋多層級權限、設備控制、即時監控、異常告警、LLM 功能以及跨產品 Design System。</p>
+
+        <h3 class="case__h">設計行動｜建立可跨產品延伸的核心規則</h3>
+
+        <div class="step">
+          <span class="pixel-num step__n">01</span>
+          <div class="step__body">
+            <h4 class="step__h">權限設計：釐清角色、設備與資料關係</h4>
+            <p>面對不同客戶、組織層級與使用角色，我先拆解「誰能看到什麼、控制什麼、管理什麼」，整理角色、設備與資料範圍之間的關係。</p>
+            <p>將複雜權限轉換為可理解的設定流程與介面層級，讓管理者能快速確認不同角色的操作範圍，也避免使用者接觸到不屬於自身權限的設備與資訊。</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="pixel-num step__n">02</span>
+          <div class="step__body">
+            <h4 class="step__h">監控與告警：縮短從發現到處理的流程</h4>
+            <p>監控情境需要同時處理大量即時影像、設備狀態與異常事件，因此設計重點不是顯示更多資訊，而是協助操作者快速判斷「現在需要處理什麼」。</p>
+            <p>我重新整理儀表板資訊層級，將即時狀態、異常事件與設備資訊集中呈現，並建立從 發現異常 → 查看事件 → 確認設備 → 執行處置 的操作流程，降低在不同頁面間切換的成本。</p>
+          </div>
+        </div>
+
+        <figure class="ph ph--wide" data-name="work-aiot-dashboard.jpg">
+          <figcaption class="ph__name">work-aiot-dashboard.jpg</figcaption>
+          <span class="ph__desc">監控儀表板 / 告警處置流程</span>
+        </figure>
+
+        <div class="step">
+          <span class="pixel-num step__n">03</span>
+          <div class="step__body">
+            <h4 class="step__h">LLM 功能：讓 AI 進入既有工作流程</h4>
+            <p>LLM 並非獨立聊天室，而是作為既有監控與管理流程的輔助工具。</p>
+            <p>我從實際任務出發，定義 AI 可以協助查詢、摘要與操作的位置，並設計提示、回覆與操作回饋方式，讓使用者能以自然語言取得系統資訊，同時保留必要的操作確認與系統狀態，避免 AI 回覆與實際設備操作脫節。</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="pixel-num step__n">04</span>
+          <div class="step__body">
+            <h4 class="step__h">Design System：統一多產品的設計與開發規則</h4>
+            <p>因產品橫跨 Web、Desktop、App 與不同專案，早期各產品存在元件與視覺規則不一致的問題。</p>
+            <p>我建立跨產品 Design System，包含語意化色票、深淺模式、狀態規則與共用元件，並與工程端確認可重複使用的實作方式，使新功能能直接沿用既有規則，而非每次重新設計與開發。</p>
+          </div>
+        </div>
+
+        <h3 class="case__h">成果與影響｜從單一介面延伸為產品系統</h3>
+        <p class="case__p">Design System 逐步套用至多項產品，減少重複設計與前端實作成本，估計降低約 <strong>30%</strong> 開發與迭代成本。同時建立可延伸的權限、設備與告警架構，使後續智慧工地與其他 AIoT 情境能沿用既有設計規則。</p>
+
+        <figure class="ph ph--wide" data-name="work-aiot-system.jpg">
+          <figcaption class="ph__name">work-aiot-system.jpg</figcaption>
+          <span class="ph__desc">跨產品設計系統 / 元件一覽</span>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- 野生動物救傷 case study -->
+  <div class="modal" id="m-wildlife" hidden>
+    <div class="modal__scrim" data-close></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="m-wildlife-t">
+      <div class="modal__bar">
+        <span class="modal__kicker">2023 · B2B</span>
+        <button class="btn-icon modal__close" aria-label="關閉"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></button>
+      </div>
+      <div class="modal__scroll">
+        <h2 class="modal__title" id="m-wildlife-t">B2B 系統設計｜野生動物救傷</h2>
+
+        <h3 class="case__h">背景與挑戰｜把救傷流程轉成數位系統</h3>
+        <p class="case__p">野生動物救傷涉及案件建立、紀錄、狀態追蹤與多人協作。主要挑戰是理解第一線工作流程，並將大量例外情境整理成容易操作的後台系統。</p>
+
+        <h3 class="case__h">我的任務｜從需求定義產品架構</h3>
+        <p class="case__p">透過訪談整理不同角色的工作內容與資訊需求，轉換成使用情境、功能需求與資訊架構。</p>
+
+        <h3 class="case__h">設計行動｜以案件流程建立系統架構</h3>
+        <p class="case__p">整理案件從建立到追蹤的完整流程，再依任務與資訊關聯設計後台架構。專案以 Scrum 持續迭代，並透過 RWD 支援不同裝置的使用情境。</p>
+
+        <figure class="ph ph--wide" data-name="work-wildlife-flow.jpg">
+          <figcaption class="ph__name">work-wildlife-flow.jpg</figcaption>
+          <span class="ph__desc">案件流程 / 後台架構圖</span>
+        </figure>
+
+        <h3 class="case__h">成果與影響｜建立可追蹤的案件流程</h3>
+        <p class="case__p">將分散資訊整合為具備狀態與流程邏輯的案件管理系統，使救傷紀錄能以一致方式被管理與追蹤。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 社區林業計畫 case study -->
+  <div class="modal" id="m-forestry" hidden>
+    <div class="modal__scrim" data-close></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="m-forestry-t">
+      <div class="modal__bar">
+        <span class="modal__kicker">2023 · RWD</span>
+        <button class="btn-icon modal__close" aria-label="關閉"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></button>
+      </div>
+      <div class="modal__scroll">
+        <h2 class="modal__title" id="m-forestry-t">前後台設計｜社區林業計畫</h2>
+
+        <h3 class="case__h">背景與挑戰｜兼顧民眾、管理者與無障礙需求</h3>
+        <p class="case__p">網站包含大量政策與計畫資訊，前台需協助民眾快速找到內容，後台則需支援資料管理，同時符合政府網站無障礙規範。</p>
+
+        <h3 class="case__h">我的任務｜建立前後台資訊架構</h3>
+        <p class="case__p">負責 RWD 前台與管理後台設計，整理大量資訊的分類與層級，並同步考量民眾瀏覽與管理者維護需求。</p>
+
+        <h3 class="case__h">設計行動｜將無障礙納入 UI 規則</h3>
+        <p class="case__p">透過資訊分層與元件化降低閱讀負擔，並依不同裝置調整導覽與版面。同時將文字可讀性、色彩對比與操作狀態等 AA 規範納入設計。</p>
+
+        <figure class="ph ph--wide" data-name="work-forestry-frontend.jpg">
+          <figcaption class="ph__name">work-forestry-frontend.jpg</figcaption>
+          <span class="ph__desc">前台 RWD / 後台管理畫面</span>
+        </figure>
+
+        <h3 class="case__h">成果與影響｜通過 AA 無障礙標章</h3>
+        <p class="case__p">網站最終通過 AA 無障礙標章認證，在大量資訊與規範限制下，同時兼顧前台閱讀與後台管理效率。</p>
+
+        <div class="modal__foot">
+          <a href="https://communityforestry.forest.gov.tw/" class="btn btn--primary" target="_blank" rel="noopener">前往站台 <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NFT case study -->
+  <div class="modal" id="m-nft" hidden>
+    <div class="modal__scrim" data-close></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="m-nft-t">
+      <div class="modal__bar">
+        <span class="modal__kicker">2022 · UX Research</span>
+        <button class="btn-icon modal__close" aria-label="關閉"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></button>
+      </div>
+      <div class="modal__scroll">
+        <h2 class="modal__title" id="m-nft-t">UX Case Study｜NFT 交易平台</h2>
+
+        <h3 class="case__h">背景與挑戰｜交易前的信任問題</h3>
+        <p class="case__p">NFT 資訊分散且專業門檻高，使用者真正的困難不只是「如何購買」，而是如何判斷項目的可信度與價值。</p>
+
+        <h3 class="case__h">我的任務｜找出影響決策的關鍵資訊</h3>
+        <p class="case__p">透過 UX Research 分析使用者在瀏覽、評估與交易 NFT 時的資訊需求，找出影響信任與購買決策的關鍵因素。</p>
+
+        <h3 class="case__h">設計行動｜重整資訊與決策流程</h3>
+        <p class="case__p">結合使用者研究與競品分析，重新規劃資訊架構與內容優先順序，將項目資訊、風險判斷與交易操作整合為完整決策流程。</p>
+
+        <figure class="ph ph--wide" data-name="work-nft-research.jpg">
+          <figcaption class="ph__name">work-nft-research.jpg</figcaption>
+          <span class="ph__desc">研究洞察 / 決策流程圖</span>
+        </figure>
+
+        <h3 class="case__h">成果與影響｜提升資訊透明與決策效率</h3>
+        <p class="case__p">提出以「降低資訊搜尋成本、增加決策依據」為核心的交易體驗，將設計重點從操作效率延伸至平台信任與資訊透明度。</p>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // ============== HERO 入場動畫 (GSAP) ==============
     (function () {
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-      tl.from('.hero__title',  { opacity: 0, y: 36, duration: 1.0 }, 0.15)
-        .from('.hero__sub',    { opacity: 0, y: 24, duration: 1.0 }, 0.45)
-        .from('.hero__visual', { opacity: 0, scale: 0.96, duration: 1.2 }, 0.3)
-        .from('.hero__cta',    { opacity: 0, y: 16, duration: 0.8 }, 0.65);
-    })();
-
-    // ============== 漢堡選單 ==============
-    (function () {
-      const nav = document.getElementById('nav');
-      const toggle = document.getElementById('navToggle');
-      const links = document.getElementById('navLinks');
-      if (!toggle || !links) return;
-
-      const close = () => {
-        nav.classList.remove('nav--open');
-        toggle.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('no-scroll');
-      };
-      const open = () => {
-        nav.classList.add('nav--open');
-        toggle.setAttribute('aria-expanded', 'true');
-        document.body.classList.add('no-scroll');
-      };
-
-      toggle.addEventListener('click', () => {
-        if (nav.classList.contains('nav--open')) close();
-        else open();
+      // ---------- NAV (drawer for mobile, always visible on desktop) ----------
+      var nav = document.getElementById('nav');
+      var toggle = document.getElementById('navToggle');
+      function setNav(open) {
+        nav.classList.toggle('is-open', open);
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? '關閉選單' : '開啟選單');
+        syncScrollLock();
+      }
+      toggle.addEventListener('click', function () {
+        setNav(!nav.classList.contains('is-open'));
+      });
+      Array.prototype.forEach.call(document.querySelectorAll('.nav__link, .nav__cta'), function (a) {
+        a.addEventListener('click', function () { setNav(false); });
       });
 
-      // 點到任何選單連結 → 自動關閉
-      links.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', close);
+      // ---------- MODALS (full-screen, no page navigation) ----------
+      var lastFocus = null;
+      function anyModalOpen() { return !!document.querySelector('.modal.is-open'); }
+      function syncScrollLock() {
+        document.body.classList.toggle('no-scroll', anyModalOpen() || nav.classList.contains('is-open'));
+      }
+      function openModal(id) {
+        var m = document.getElementById(id);
+        if (!m) return;
+        lastFocus = document.activeElement;
+        setNav(false);
+        m.hidden = false;
+        // next frame so the transition runs
+        requestAnimationFrame(function () { m.classList.add('is-open'); });
+        syncScrollLock();
+        var closeBtn = m.querySelector('.modal__close');
+        if (closeBtn) closeBtn.focus();
+      }
+      function closeModal(m) {
+        m.classList.remove('is-open');
+        window.setTimeout(function () { m.hidden = true; syncScrollLock(); }, 180);
+        syncScrollLock();
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+      }
+      Array.prototype.forEach.call(document.querySelectorAll('[data-modal]'), function (btn) {
+        btn.addEventListener('click', function () { openModal(btn.getAttribute('data-modal')); });
       });
-
-      // 視窗放大回桌面尺寸時自動關閉
-      window.addEventListener('resize', () => {
-        if (window.innerWidth > 960 && nav.classList.contains('nav--open')) close();
-      });
-    })();
-
-    // ============== 滾動淡入 (GSAP ScrollTrigger) ==============
-    (function () {
-      gsap.registerPlugin(ScrollTrigger);
-
-      // 標題淡入
-      document.querySelectorAll('.section__title, .block__heading, .other-project__title, .thanks__title')
-        .forEach(el => {
-          gsap.fromTo(el,
-            { opacity: 0 },
-            {
-              opacity: 1,
-              duration: 1,
-              ease: 'power2.out',
-              scrollTrigger: {
-                trigger: el,
-                start: 'top 88%',
-                toggleActions: 'play none none none',
-              }
-            }
-          );
-        });
-
-      // 區塊整體淡入（各自觸發，不互相等待）
-      document.querySelectorAll('.block, .grid-2, .other-project').forEach(el => {
-        gsap.fromTo(el,
-          { opacity: 0 },
-          {
-            opacity: 1,
-            duration: 0.9,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 87%',
-              toggleActions: 'play none none none',
-            }
-          }
-        );
-      });
-
-      // section head（數字 + 標題）淡入
-      document.querySelectorAll('.section__head').forEach(el => {
-        gsap.fromTo(el,
-          { opacity: 0 },
-          {
-            opacity: 1,
-            duration: 1,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            }
-          }
-        );
-      });
-    })();
-
-    // ============== 導航列：下滾隱藏 / 上滾顯示 / 滑鼠上緣喚回 ==============
-    (function () {
-      const nav = document.getElementById('nav');
-      if (!nav) return;
-      let lastY = window.scrollY;
-      let ticking = false;
-      let suppressHide = false; // 錨點跳轉中暫時不隱藏
-
-      const update = () => {
-        const y = window.scrollY;
-        // 漢堡選單開啟時永遠顯示
-        if (nav.classList.contains('nav--open')) {
-          nav.classList.remove('nav--hidden');
-          lastY = y;
-          ticking = false;
-          return;
-        }
-        // 接近頁面頂部時永遠顯示
-        const threshold = window.innerHeight * 0.8;
-        if (y < threshold) {
-          nav.classList.remove('nav--hidden');
-        } else if (suppressHide) {
-          // 錨點跳轉中，只更新 lastY，不改變顯示狀態
-          nav.classList.remove('nav--hidden');
-        } else if (y > lastY + 4) {
-          // 往下滾 → 隱藏
-          nav.classList.add('nav--hidden');
-        } else if (y < lastY - 4) {
-          // 往上滾 → 顯示
-          nav.classList.remove('nav--hidden');
-        }
-        lastY = y;
-        ticking = false;
-      };
-
-      window.addEventListener('scroll', () => {
-        if (!ticking) {
-          requestAnimationFrame(update);
-          ticking = true;
-        }
-      }, { passive: true });
-
-      // 滑鼠移到畫面上方四分之一 → 喚回導航
-      let mouseTick = false;
-      window.addEventListener('mousemove', (e) => {
-        if (mouseTick) return;
-        mouseTick = true;
-        requestAnimationFrame(() => {
-          if (e.clientY <= window.innerHeight * 0.25) {
-            nav.classList.remove('nav--hidden');
-          }
-          mouseTick = false;
-        });
-      }, { passive: true });
-
-      // 點擊導航錨點 → 暫停自動隱藏，等使用者實際滾動才恢復
-      document.querySelectorAll('.nav__links a[href^="#"]').forEach(a => {
-        a.addEventListener('click', () => {
-          suppressHide = true;
+      Array.prototype.forEach.call(document.querySelectorAll('.modal'), function (m) {
+        m.querySelector('.modal__scroll').addEventListener('click', function (e) { e.stopPropagation(); });
+        Array.prototype.forEach.call(m.querySelectorAll('.modal__close, [data-close]'), function (x) {
+          x.addEventListener('click', function () { closeModal(m); });
         });
       });
-      // 偵測使用者主動滾動 → 恢復自動隱藏
-      const reactivate = () => { suppressHide = false; };
-      window.addEventListener('wheel', reactivate, { passive: true });
-      window.addEventListener('touchmove', reactivate, { passive: true });
-      window.addEventListener('keydown', (e) => {
-        // 方向鍵 / Page Up/Down / Home/End / Space
-        if (['ArrowUp','ArrowDown','PageUp','PageDown','Home','End',' '].includes(e.key)) {
-          reactivate();
-        }
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        var open = document.querySelector('.modal.is-open');
+        if (open) closeModal(open);
+        else if (nav.classList.contains('is-open')) setNav(false);
       });
     })();
   </script>
