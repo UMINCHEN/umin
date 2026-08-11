@@ -7,26 +7,33 @@
 
 :root {
   /* --- surfaces (warm near-black, no pure #000) --- */
-  --bg:        #16150F;   /* page */
-  --surface:   #1E1C13;   /* cards / panels */
-  --surface-2: #2A2718;   /* raised / hover */
-  --line:      #3A3620;   /* hairlines / borders */
-  --line-soft: #2E2B1B;
+  --bg:        #14130C;   /* page - deep warm near-black */
+  --surface:   #211F15;   /* cards / panels - a clear step up from bg */
+  --surface-2: #2C2819;   /* raised / hover */
+  --line:      #5E5A34;   /* hairlines / borders - raised for visible definition */
+  --line-soft: #403B22;
 
   /* --- ink (warm bone) --- */
-  --ink:       #ECE6D3;   /* primary text */
-  --ink-mid:   #C4BC9E;   /* secondary */
-  --ink-dim:   #928A6F;   /* tertiary / meta */
+  --ink:       #F3EEDD;   /* primary text */
+  --ink-mid:   #DCD5BB;   /* secondary */
+  --ink-dim:   #B0A886;   /* tertiary / meta */
 
   /* --- accent: low-saturation army green (locked, one accent) --- */
-  --army:      #767C4E;   /* primary fill */
+  --army:      #3C4322;   /* primary fill - deep army/olive */
   --army-lite: #B0B87A;   /* accent text / big numbers / links on dark */
-  --army-deep: #4C5130;   /* pressed state + hard shadow */
-  --army-ink:  #14150C;   /* text on army fill */
+  --army-deep: #262B14;   /* pressed state + hard shadow */
+  --army-ink:  #14150C;   /* dark text on LIGHT army-lite chips (step no. / label) */
+  --on-army:   #F6F4EC;   /* white text on the deep army fill */
 
   /* --- system --- */
   --shadow:    4px 4px 0 var(--army-deep);
   --shadow-sm: 3px 3px 0 var(--army-deep);
+  --radius:    4px;       /* buttons + chips only; structural containers stay sharp */
+  --corner-studs:
+    linear-gradient(var(--army-lite),var(--army-lite)) left 5px top 5px/6px 6px no-repeat,
+    linear-gradient(var(--army-lite),var(--army-lite)) right 5px top 5px/6px 6px no-repeat,
+    linear-gradient(var(--army-lite),var(--army-lite)) left 5px bottom 5px/6px 6px no-repeat,
+    linear-gradient(var(--army-lite),var(--army-lite)) right 5px bottom 5px/6px 6px no-repeat;
   --wrap:      1080px;
   --nav-h:     64px;
   --ease:      cubic-bezier(0.16, 1, 0.3, 1);
@@ -58,7 +65,19 @@ img, svg { display: block; max-width: 100%; }
 
 .wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
 .pixel-num { font-family: var(--font-pixel); letter-spacing: 0; line-height: 1; }
-.pixel-num--inline { font-size: 0.82em; color: var(--army-lite); }
+
+/* faint pixel graph-grid behind content (retro canvas, does not touch readability) */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.45;
+  background-image:
+    linear-gradient(to right, var(--line-soft) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line-soft) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
 
 /* subtle warm grain, fixed + non-interactive (perf-safe) */
 body::after {
@@ -76,14 +95,16 @@ body::after {
 
 /* ============================================================ TAGS (pixel chips) ============================================================ */
 .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tags { gap: 9px; }
 .tag {
-  font-size: 0.74rem;
+  font-size: 0.78rem;
   font-weight: 500;
   letter-spacing: 0.02em;
   color: var(--army-lite);
-  background: transparent;
+  background: rgba(176, 184, 122, 0.06);
   border: 2px solid var(--line);
-  padding: 4px 9px;
+  border-radius: var(--radius);
+  padding: 5px 11px;
   line-height: 1.4;
 }
 
@@ -100,7 +121,7 @@ body::after {
   color: var(--btn-ink);
   background: var(--btn-fill);
   border: 2px solid var(--ink);
-  border-radius: 0;
+  border-radius: var(--radius);
   padding: 12px 18px;
   cursor: pointer;
   box-shadow: var(--shadow);
@@ -109,8 +130,8 @@ body::after {
 .btn .ico { font-size: 1.05em; }
 .btn:hover { transform: translate(2px, 2px); box-shadow: var(--shadow-sm); }
 .btn:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--army-deep); }
-.btn--primary { --btn-fill: var(--army); --btn-ink: var(--army-ink); border-color: var(--ink); }
-.btn--primary:hover { background: #838a55; }
+.btn--primary { --btn-fill: var(--army); --btn-ink: var(--on-army); border-color: var(--ink); }
+.btn--primary:hover { background: #4A5230; }
 .btn--ghost { --btn-fill: transparent; --btn-ink: var(--ink-mid); border-color: var(--line); box-shadow: 3px 3px 0 var(--line-soft); }
 .btn--ghost:hover { --btn-ink: var(--ink); box-shadow: 1px 1px 0 var(--line-soft); }
 .btn--sm { font-size: 0.85rem; padding: 9px 13px; box-shadow: var(--shadow-sm); }
@@ -122,7 +143,7 @@ body::after {
   color: var(--ink);
   background: var(--surface-2);
   border: 2px solid var(--ink);
-  border-radius: 0;
+  border-radius: var(--radius);
   cursor: pointer;
   box-shadow: var(--shadow-sm);
   transition: transform 0.08s var(--ease), box-shadow 0.08s var(--ease);
@@ -138,25 +159,27 @@ body::after {
 .ph {
   position: relative;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 6px;
+  gap: 12px;
   text-align: center;
-  background:
-    repeating-linear-gradient(45deg, var(--line-soft) 0, var(--line-soft) 8px, transparent 8px, transparent 16px),
-    var(--surface);
-  border: 2px dashed var(--line);
+  background-color: var(--surface);
+  background-image: radial-gradient(var(--line-soft) 1.2px, transparent 1.3px);
+  background-size: 22px 22px;
+  border: 2px solid var(--line);
   color: var(--ink-dim);
-  padding: 20px;
+  padding: 24px;
   overflow: hidden;
 }
-/* pixel corner ticks */
-.ph::before, .ph::after {
-  content: ""; position: absolute; width: 10px; height: 10px;
-  border: 2px solid var(--army);
+/* muted pixel "image" glyph, centered as a calm watermark */
+.ph::before {
+  content: "";
+  width: 46px; height: 46px;
+  background-color: var(--army-lite);
+  opacity: 0.42;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' d='M3 5h18v14H3z M6 8v8h12V8z'/%3E%3Cpath d='M8 10h3v3H8z'/%3E%3Cpath d='M6 16v-1h2v-2h2v2h2v-3h2v3h2v1z'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' d='M3 5h18v14H3z M6 8v8h12V8z'/%3E%3Cpath d='M8 10h3v3H8z'/%3E%3Cpath d='M6 16v-1h2v-2h2v2h2v-3h2v3h2v1z'/%3E%3C/svg%3E") center / contain no-repeat;
 }
-.ph::before { top: 6px; left: 6px; border-right: 0; border-bottom: 0; }
-.ph::after  { bottom: 6px; right: 6px; border-left: 0; border-top: 0; }
-.ph__name { font-family: var(--font-pixel); font-size: 0.62rem; color: var(--army-lite); word-break: break-all; }
-.ph__desc { font-size: 0.8rem; color: var(--ink-dim); }
+.ph__name { font-family: var(--font-pixel); font-size: 0.58rem; line-height: 1.5; color: var(--ink-dim); letter-spacing: 0.01em; word-break: break-all; }
+.ph__desc { font-size: 0.84rem; color: var(--ink-mid); }
 .ph--portrait { aspect-ratio: 4 / 5; }
 .ph--cover    { aspect-ratio: 4 / 3; }
 .ph--wide     { aspect-ratio: 16 / 9; margin: 26px 0; }
@@ -176,10 +199,10 @@ body::after {
   display: flex; align-items: center; justify-content: space-between;
 }
 .nav__logo {
-  font-family: var(--font-pixel);
-  font-size: 1.05rem;
+  font-weight: 900;
+  font-size: 1.4rem;
   color: var(--ink);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
 }
 .nav__logo:hover { color: var(--army-lite); }
 .nav__menu { display: flex; align-items: center; gap: 28px; }
@@ -202,6 +225,7 @@ body::after {
   color: var(--ink);
   background: var(--surface-2);
   border: 2px solid var(--ink);
+  border-radius: var(--radius);
   cursor: pointer;
   box-shadow: var(--shadow-sm);
 }
@@ -233,12 +257,9 @@ body::after {
   color: var(--ink);
 }
 .hero__name {
-  font-family: var(--font-pixel);
-  font-size: 0.62em;
   color: var(--army-lite);
-  vertical-align: 0.14em;
-  margin-left: 0.12em;
-  text-shadow: 4px 4px 0 var(--army-deep);
+  font-weight: 900;
+  margin-left: 0.1em;
 }
 .hero__sub {
   margin-top: 22px; max-width: 42ch;
@@ -253,8 +274,12 @@ body::after {
 /* ============================================================ SECTION: 專案 ============================================================ */
 .work { position: relative; z-index: 2; padding: 40px 0 100px; }
 .section-head {
-  padding: 40px 0 44px;
-  border-top: 2px solid var(--line);
+  position: relative;
+  padding: 46px 0 52px;
+}
+.section-head::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+  background: repeating-linear-gradient(90deg, var(--line) 0 9px, transparent 9px 18px);
 }
 .section-title {
   font-size: clamp(1.9rem, 5vw, 2.7rem);
@@ -266,17 +291,20 @@ body::after {
 
 /* alternating image + text cards */
 .work-card {
-  display: grid; grid-template-columns: 0.9fr 1.1fr;
+  display: grid; grid-template-columns: 0.92fr 1.08fr;
   gap: 0;
   background: var(--surface);
   border: 2px solid var(--line);
   box-shadow: var(--shadow);
+  transition: border-color 0.15s var(--ease), box-shadow 0.15s var(--ease);
 }
-.work-card > .ph { border: 0; border-right: 2px solid var(--line); aspect-ratio: auto; min-height: 300px; }
-.work-card__body { padding: 34px 34px 30px; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+.work-card:hover { border-color: #7C7647; box-shadow: 7px 7px 0 var(--army-deep); }
+.work-card > .ph { border: 0; border-right: 2px solid var(--line); aspect-ratio: auto; min-height: 320px; }
+.work-card__body { padding: 40px 38px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 15px; }
 .work-card__year {
   font-size: 1.15rem; color: var(--army-lite);
   background: var(--surface-2); border: 2px solid var(--line);
+  border-radius: var(--radius);
   padding: 6px 10px;
 }
 .work-card__title {
@@ -365,6 +393,7 @@ body::after {
   font-size: 1.35rem; color: var(--army-ink);
   background: var(--army-lite);
   padding: 10px 12px; height: max-content;
+  border-radius: var(--radius);
   box-shadow: 3px 3px 0 var(--army-deep);
 }
 .step__body { min-width: 0; }
@@ -390,12 +419,26 @@ body::after {
 .core__label {
   display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
   color: var(--army-ink); background: var(--army-lite); padding: 3px 8px; margin-bottom: 10px;
+  border-radius: var(--radius);
 }
 .core__val { color: var(--ink); font-weight: 500; line-height: 1.8; }
 .trait { display: flex; align-items: flex-start; gap: 16px; margin: 16px 0; }
 .trait__mark { flex: none; color: var(--army-lite); padding-top: 4px; }
 .trait p { color: var(--ink-mid); font-size: 1rem; line-height: 1.8; }
 .modal__foot { margin-top: 34px; }
+
+/* ============================================================ PIXEL FLAVOR ============================================================ */
+/* corner studs = retro panel rivets */
+.work-card, .core { position: relative; }
+.work-card::after, .core::after {
+  content: ""; position: absolute; inset: 0; z-index: 4; pointer-events: none;
+  background: var(--corner-studs);
+}
+/* pixel emboss on large display headings (readability kept: big + bold) */
+.hero__title, .section-title, .foot__title, .modal__title {
+  text-shadow: 2px 2px 0 var(--army-deep);
+}
+/* pixel step-corners on chips + buttons via layered sizing already handled by --radius */
 
 /* ============================================================ RESPONSIVE ============================================================ */
 @media (max-width: 860px) {
