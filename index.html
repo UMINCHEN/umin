@@ -9,43 +9,35 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Press+Start+2P&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=3" />
+  <link rel="stylesheet" href="style.css?v=6" />
 </head>
 <body>
 
   <!-- ============================================================
-       PIXEL ICON SPRITE
-       These are simple grid-aligned geometric marks (pixel-art icons),
-       drawn on a 16-unit grid with shape-rendering:crispEdges so they
-       stay crunchy at any size. Deliberate aesthetic choice for the
-       retro/pixel brief; not a stand-in for a stroke-icon library.
+       PIXEL ICON SPRITE — chunky grid-aligned glyphs, crispEdges.
   ============================================================ -->
   <svg width="0" height="0" class="sprite" aria-hidden="true" focusable="false">
     <symbol id="i-menu" viewBox="0 0 16 16" shape-rendering="crispEdges">
-      <rect x="2" y="3" width="12" height="2"/><rect x="2" y="7" width="12" height="2"/><rect x="2" y="11" width="12" height="2"/>
+      <rect x="1" y="3" width="14" height="2"/><rect x="1" y="7" width="14" height="2"/><rect x="1" y="11" width="14" height="2"/>
     </symbol>
     <symbol id="i-close" viewBox="0 0 16 16" shape-rendering="crispEdges">
-      <rect x="3" y="3" width="2" height="2"/><rect x="5" y="5" width="2" height="2"/><rect x="7" y="7" width="2" height="2"/><rect x="9" y="9" width="2" height="2"/><rect x="11" y="11" width="2" height="2"/>
-      <rect x="11" y="3" width="2" height="2"/><rect x="9" y="5" width="2" height="2"/><rect x="5" y="9" width="2" height="2"/><rect x="3" y="11" width="2" height="2"/>
+      <rect x="2" y="2" width="2" height="2"/><rect x="4" y="4" width="2" height="2"/><rect x="6" y="6" width="2" height="2"/><rect x="8" y="8" width="2" height="2"/><rect x="10" y="10" width="2" height="2"/><rect x="12" y="12" width="2" height="2"/>
+      <rect x="12" y="2" width="2" height="2"/><rect x="10" y="4" width="2" height="2"/><rect x="6" y="8" width="2" height="2"/><rect x="4" y="10" width="2" height="2"/><rect x="2" y="12" width="2" height="2"/>
     </symbol>
     <symbol id="i-download" viewBox="0 0 16 16" shape-rendering="crispEdges">
-      <rect x="7" y="2" width="2" height="5"/>
+      <rect x="7" y="1" width="2" height="6"/>
       <rect x="3" y="7" width="10" height="2"/><rect x="5" y="9" width="6" height="2"/><rect x="7" y="11" width="2" height="2"/>
-      <rect x="3" y="13" width="10" height="2"/>
+      <rect x="2" y="14" width="12" height="2"/>
     </symbol>
+    <!-- long ">" chevron -->
     <symbol id="i-arrow" viewBox="0 0 16 16" shape-rendering="crispEdges">
-      <rect x="2" y="7" width="9" height="2"/>
-      <rect x="9" y="5" width="2" height="2"/><rect x="11" y="7" width="2" height="2"/><rect x="9" y="9" width="2" height="2"/>
+      <rect x="4" y="2" width="2" height="2"/><rect x="6" y="4" width="2" height="2"/><rect x="8" y="6" width="2" height="2"/><rect x="10" y="8" width="2" height="2"/><rect x="8" y="10" width="2" height="2"/><rect x="6" y="12" width="2" height="2"/><rect x="4" y="14" width="2" height="2"/>
     </symbol>
     <symbol id="i-mail" viewBox="0 0 16 16" shape-rendering="crispEdges">
-      <rect x="3" y="4" width="10" height="2"/><rect x="3" y="11" width="10" height="2"/><rect x="3" y="4" width="2" height="9"/><rect x="11" y="4" width="2" height="9"/>
-      <rect x="5" y="6" width="2" height="2"/><rect x="7" y="8" width="2" height="2"/><rect x="9" y="6" width="2" height="2"/>
-    </symbol>
-    <symbol id="i-plus" viewBox="0 0 16 16" shape-rendering="crispEdges">
-      <rect x="7" y="3" width="2" height="10"/><rect x="3" y="7" width="10" height="2"/>
+      <rect x="2" y="4" width="12" height="2"/><rect x="2" y="10" width="12" height="2"/><rect x="2" y="4" width="2" height="8"/><rect x="12" y="4" width="2" height="8"/>
+      <rect x="4" y="6" width="2" height="2"/><rect x="6" y="8" width="2" height="2"/><rect x="8" y="8" width="2" height="2"/><rect x="10" y="6" width="2" height="2"/>
     </symbol>
     <symbol id="i-infinity" viewBox="0 0 22 12" shape-rendering="crispEdges">
-      <!-- two linked hollow squares = loop / 無限 motif -->
       <rect x="1" y="1" width="8" height="2"/><rect x="1" y="9" width="8" height="2"/><rect x="1" y="1" width="2" height="10"/><rect x="7" y="1" width="2" height="10"/>
       <rect x="13" y="1" width="8" height="2"/><rect x="13" y="9" width="8" height="2"/><rect x="13" y="1" width="2" height="10"/><rect x="19" y="1" width="2" height="10"/>
       <rect x="7" y="5" width="6" height="2"/>
@@ -65,7 +57,7 @@
       <div class="nav__menu" id="navMenu">
         <a href="#about" class="nav__link">關於我</a>
         <a href="#work" class="nav__link">專案</a>
-        <a href="#contact" class="nav__link">聯絡</a>
+        <a href="#contact" class="nav__link">聯絡我</a>
         <a href="https://drive.google.com/file/d/1GXfioWyQ6EBkZTVLCT1Z5Gu1c9mbMaPH/view?usp=drive_link" class="btn btn--sm nav__cta" target="_blank" rel="noopener">
           下載履歷 <svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>
         </a>
@@ -81,16 +73,17 @@
         <div class="hero__text">
           <p class="hero__hi">哩賀!</p>
           <h1 class="hero__title">我是 <span class="hero__name">UMIN</span></h1>
+          <p class="id-line">陳宥銘 UMIN | 產品設計師 | Fintech&amp;AIoT</p>
           <p class="hero__sub">具約 5 年數位產品設計經驗，專注 B2B 系統、複雜流程與資料密集型產品，具 Web、Desktop、App 跨平台產品經驗。</p>
 
           <ul class="tags hero__tags">
-            <li class="tag">#Fintech</li>
-            <li class="tag">#B2B</li>
-            <li class="tag">#AIoT</li>
-            <li class="tag">#跨平台產品</li>
-            <li class="tag">#複雜系統</li>
-            <li class="tag">#設計系統</li>
-            <li class="tag">#LLM</li>
+            <li class="tag">Fintech</li>
+            <li class="tag">B2B</li>
+            <li class="tag">AIoT</li>
+            <li class="tag">跨平台產品</li>
+            <li class="tag">複雜系統</li>
+            <li class="tag">設計系統</li>
+            <li class="tag">LLM</li>
           </ul>
 
           <div class="hero__actions">
@@ -98,7 +91,7 @@
               下載履歷 <svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>
             </a>
             <button class="btn" data-modal="m-bio">
-              經歷與優勢 <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg>
+              經歷與優勢 <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>
             </button>
           </div>
         </div>
@@ -115,10 +108,7 @@
     <!-- ============================================================ 專案 ============================================================ -->
     <section id="work" class="work">
       <div class="wrap">
-        <div class="section-head">
-          <h2 class="section-title">專案</h2>
-          <p class="section-note">B2B 系統、AIoT、研究與品牌，共 5 件。</p>
-        </div>
+        <div class="pixel-rule" aria-hidden="true"></div>
 
         <div class="work-list">
 
@@ -136,7 +126,7 @@
                 <li class="tag">B2B</li><li class="tag">AIoT</li><li class="tag">LLM</li><li class="tag">設計系統</li>
               </ul>
               <div class="work-card__actions">
-                <button class="btn" data-modal="m-aiot">了解更多 <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                <button class="btn" data-modal="m-aiot">了解更多 <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
               </div>
             </div>
           </article>
@@ -155,7 +145,7 @@
                 <li class="tag">B2B</li><li class="tag">RWD</li><li class="tag">Scrum</li>
               </ul>
               <div class="work-card__actions">
-                <button class="btn" data-modal="m-wildlife">了解更多 <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                <button class="btn" data-modal="m-wildlife">了解更多 <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
               </div>
             </div>
           </article>
@@ -175,7 +165,7 @@
               </ul>
               <div class="work-card__actions">
                 <a href="https://communityforestry.forest.gov.tw/" class="btn btn--primary" target="_blank" rel="noopener">前往站台 <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-                <button class="btn" data-modal="m-forestry">了解更多 <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                <button class="btn" data-modal="m-forestry">了解更多 <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
               </div>
             </div>
           </article>
@@ -194,7 +184,7 @@
                 <li class="tag">Web3</li><li class="tag">UX Research</li>
               </ul>
               <div class="work-card__actions">
-                <button class="btn" data-modal="m-nft">了解更多 <svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                <button class="btn" data-modal="m-nft">了解更多 <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
               </div>
             </div>
           </article>
@@ -228,11 +218,11 @@
   <footer id="contact" class="foot">
     <div class="wrap foot__inner">
       <h2 class="foot__title">感謝您的時間!<br />歡迎常來坐!</h2>
-      <p class="foot__id">陳宥銘 | UMIN 產品設計師 | Fintech&amp;AIoT</p>
+      <p class="id-line foot__id">陳宥銘 UMIN | 產品設計師 | Fintech&amp;AIoT</p>
       <div class="foot__actions">
         <a href="mailto:uuu015119@gmail.com" class="btn btn--primary">聯絡我 <svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg></a>
-        <a href="https://www.linkedin.com/in/uminchen/" class="btn" target="_blank" rel="noopener">LinkedIn <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&amp;list=RDdQw4w9WgXcQ&amp;start_radio=1" class="btn btn--ghost" target="_blank" rel="noopener">前往 VIP 頁面 <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a href="https://www.linkedin.com/in/uminchen/" class="btn btn--dark" target="_blank" rel="noopener">LinkedIn <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&amp;list=RDdQw4w9WgXcQ&amp;start_radio=1" class="btn btn--dark" target="_blank" rel="noopener">前往 VIP 特區 <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
   </footer>
@@ -446,7 +436,6 @@
 
   <script>
     (function () {
-      // ---------- NAV (drawer for mobile, always visible on desktop) ----------
       var nav = document.getElementById('nav');
       var toggle = document.getElementById('navToggle');
       function setNav(open) {
@@ -455,14 +444,11 @@
         toggle.setAttribute('aria-label', open ? '關閉選單' : '開啟選單');
         syncScrollLock();
       }
-      toggle.addEventListener('click', function () {
-        setNav(!nav.classList.contains('is-open'));
-      });
+      toggle.addEventListener('click', function () { setNav(!nav.classList.contains('is-open')); });
       Array.prototype.forEach.call(document.querySelectorAll('.nav__link, .nav__cta'), function (a) {
         a.addEventListener('click', function () { setNav(false); });
       });
 
-      // ---------- MODALS (full-screen, no page navigation) ----------
       var lastFocus = null;
       function anyModalOpen() { return !!document.querySelector('.modal.is-open'); }
       function syncScrollLock() {
@@ -474,7 +460,6 @@
         lastFocus = document.activeElement;
         setNav(false);
         m.hidden = false;
-        // next frame so the transition runs
         requestAnimationFrame(function () { m.classList.add('is-open'); });
         syncScrollLock();
         var closeBtn = m.querySelector('.modal__close');
