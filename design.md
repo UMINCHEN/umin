@@ -52,7 +52,7 @@
 - 按鈕互動時位移抵銷陰影，模擬實體按壓。
 
 ## 4.5 像素風細節（內文維持黑體）
-- **角釘 `--corner-studs`**：卡片與 core 四角的 6px **淺 sage** 小方塊 `--stud #CFD6A8`（非橘；單一 `::after` + 四角漸層）。**站內不使用任何虛線**。
+- **角釘 `--corner-studs`**：卡片與 core 四角的 6px **極淺 sage** 小方塊 `--stud #E7EBD2`（非橘；單一 `::after` + 四角漸層）。**站內不使用任何虛線**。
 - **格線畫布 `body::before`**：固定 44px 淡格線，只在底色露出處顯現。
 - **像素虛線 `.pixel-rule`**：專案區頂端的方塊虛線分隔。
 - **像素圖示**：內嵌 SVG sprite（crispEdges）。`i-arrow` 為長「>」箭頭、`i-menu` 粗漢堡、`i-mail` 像素信封、`i-download`、`i-close`、`i-infinity`（無限圖騰）。
