@@ -223,7 +223,7 @@ body::before {
   line-height: 1.14; color: var(--ink);
   text-shadow: 3px 3px 0 var(--accent-deep);
 }
-.hero__name { color: var(--accent); }
+.hero__name { color: var(--ink); }
 .id-line { font-weight: 700; letter-spacing: 0.03em; color: var(--accent); font-size: 0.98rem; }
 .hero .id-line { margin: 18px 0 2px; }
 .hero__sub { margin-top: 16px; max-width: 42ch; font-size: 1.02rem; color: var(--ink); line-height: 1.8; }
@@ -252,7 +252,7 @@ body::before {
 .work-card__year {
   font-family: var(--font-pixel-cjk); font-size: 1rem; color: var(--ink-mid);
 }
-.work-card__title { font-family: var(--font-pixel-cjk); font-size: clamp(1.22rem, 2.7vw, 1.65rem); font-weight: 700; line-height: 1.5; letter-spacing: 0.02em; color: var(--ink); text-shadow: 2px 2px 0 var(--accent-deep); }
+.work-card__title { font-family: var(--font-pixel-cjk); font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 400; line-height: 1.45; letter-spacing: 0.02em; color: var(--ink); text-shadow: 2px 2px 0 var(--accent-deep); }
 .work-card__desc { color: var(--ink); font-size: 0.98rem; }
 .work-card__desc strong { color: var(--accent); font-weight: 900; }
 .work-card__actions { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 12px; }

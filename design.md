@@ -40,7 +40,7 @@
 ## 2. 字體 Typography
 
 - `--font-cjk: "Noto Sans TC"` - **所有內文與一般標題**（卡片標題、彈窗標題、按鈕）。標題 `font-weight: 900`。
-- `--font-pixel-cjk: "Zpix"` - **用在大標題、導航列、卡片標題、彈窗標題與所有按鈕文字**（`哩賀!` / `我是 UMIN` / `感謝您的時間!` / `歡迎常來逛逛` 等）。Zpix 為向量像素字、放大不糊，含中英；透過 jsDelivr 載入（`@font-face`），失敗則 fallback 到 Noto Sans TC。**所有像素標題用「一致」字重**（目前 `font-weight:700` 合成粗體）：Zpix 只有單一字重，若讓 `<h1>` 用預設粗體、`<p>` 用 400，兩行粗細會不一（例：`哩賀!` vs `我是 UMIN`），所以標題類一律明確設同一值。**年份與 chips 維持 400**（不加粗）。chips 文字也用 Zpix。
+- `--font-pixel-cjk: "Zpix"` - **用在大標題、導航列、卡片標題、彈窗標題與所有按鈕文字**（`哩賀!` / `我是 UMIN` / `感謝您的時間!` / `歡迎常來逛逛` 等）。Zpix 為向量像素字、放大不糊，含中英；透過 jsDelivr 載入（`@font-face`），失敗則 fallback 到 Noto Sans TC。**像素標題一律明確指定字重**（避免瀏覽器對 `<h1>/<h2>/<h3>` 合成假粗體、造成相鄰兩行粗細不一，例 `哩賀!` vs `我是 UMIN`）：hero／彈窗／頁尾大標題用 `700`；**專案卡片標題用 `400`**（小字級下合成粗體會糊，故改回 400 並放大字級）；年份與 chips 維持 `400`。chips 文字也用 Zpix。hero 的 `UMIN` 為白字（非橘）。
 - `--font-pixel: "Press Start 2P"` - **只用在年份與步驟編號**（`2026`、`01`）。內文數字用黑體。
 - 大標題加像素浮凸 `text-shadow`（hero 用 `--accent-deep` 深橘、頁尾用 `--accent` 亮橘）。
 
