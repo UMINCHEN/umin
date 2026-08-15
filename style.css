@@ -39,8 +39,7 @@
 
   --shadow:    4px 4px 0 rgba(6,10,7,0.65);
   --shadow-sm: 3px 3px 0 rgba(6,10,7,0.65);
-  --radius:    4px;       /* chips + small pixel badges only; containers stay sharp */
-  --radius-pill: 999px;   /* buttons - fully rounded */
+  --radius:    4px;       /* buttons + chips only; containers stay sharp */
   --corner-studs:
     linear-gradient(var(--stud),var(--stud)) left 5px top 5px/6px 6px no-repeat,
     linear-gradient(var(--stud),var(--stud)) right 5px top 5px/6px 6px no-repeat,
@@ -100,12 +99,12 @@ body::before {
 .tag {
   display: inline-flex; align-items: center;
   font-family: var(--font-pixel-cjk);
-  font-size: 0.72rem; font-weight: 400; letter-spacing: 0.02em;
+  font-size: 1rem; font-weight: 400; letter-spacing: 0.02em;
   color: var(--ink);
   background: none;
   border: 0;
   border-radius: var(--radius);
-  padding: 7px 11px;
+  padding: 7px 6px;
   line-height: 1.4;
 }
 .tag::before { content: "#"; color: var(--ink); font-weight: 800; margin-right: 2px; }
@@ -122,7 +121,7 @@ body::before {
   color: var(--btn-ink);
   background: var(--btn-fill);
   border: 2px solid var(--btn-bd);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius);
   padding: 14px 22px;
   cursor: pointer;
   transition: transform 0.08s var(--ease), filter 0.15s var(--ease), background 0.15s var(--ease);
@@ -141,7 +140,7 @@ body::before {
   color: var(--ink);
   background: var(--surface-2);
   border: 2px solid var(--ink);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius);
   cursor: pointer;
   transition: transform 0.08s var(--ease), filter 0.15s var(--ease);
 }
@@ -250,9 +249,6 @@ body::before {
 }
 .work-card > .ph { border: 0; border-right: 2px solid var(--line); aspect-ratio: auto; min-height: 320px; }
 .work-card__body { padding: 40px 38px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 15px; }
-.work-card__year {
-  font-family: var(--font-pixel-cjk); font-size: 1rem; color: var(--ink-mid);
-}
 .work-card__title { font-family: var(--font-pixel-cjk); font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 400; line-height: 1.45; letter-spacing: 0.02em; color: var(--ink); text-shadow: 2px 2px 0 var(--accent-deep); }
 .work-card__desc { color: var(--ink); font-size: 0.98rem; }
 .work-card__desc strong { color: var(--accent); font-weight: 900; }
