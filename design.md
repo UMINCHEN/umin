@@ -58,7 +58,7 @@
 - **像素圖示**：內嵌 SVG sprite（crispEdges）。`i-arrow` 為長「>」箭頭、`i-menu` 粗漢堡、`i-mail` 像素信封、`i-download`、`i-close`、`i-infinity`（無限圖騰）。
 
 ## 5. 元件 Components
-- **按鈕 `.btn`**：**像素字體（Zpix）、無陰影**、直角 2px 邊 + 4px 圓角 + 按壓位移。`--primary`＝亮橘填色 + 深字；預設＝深綠面板 + 骨白字；`--sm`＝導航用。`.btn-icon`＝彈窗關閉方鈕。文字級距：一般 1rem／`--sm` 0.85rem。
+- **按鈕 `.btn`**：**像素字體（Zpix）**、直角 2px 邊 + 4px 圓角 + **硬陰影（Windows 98 式色塊陰影，無模糊）`3px 3px 0`**，預設用 `rgba(6,10,7,.65)`、`--primary` 用 `--accent-deep`；按下時位移 3px 抵銷陰影，模擬實體按壓。`--primary`＝亮橘填色 + 深字；預設＝深綠面板 + 骨白字；`--sm`＝導航用。`.btn-icon`＝彈窗關閉方鈕（同陰影）。文字級距：一般 1rem／`--sm` 0.85rem。
 - **chips `.tag`**：**透明無底色、無框**、4px 圓角、**字級與內文一致（1rem）、左右內距縮窄（6px）**，文字前用 CSS `::before` 加**白色 `#`**（`--ink`；HTML 不寫 #，避免重複）。
 - **佔位 `.ph`**：綠面板 + 點陣 + 亮橘像素相片圖示 + 像素檔名 + 說明。變體 `--portrait`(4:5)、`--cover`、`--wide`(16:9)。替換：把 `<figure class="ph …" data-name="檔名">` 換成 `<img src="images/檔名" alt="…">`。
 - **導航 `.nav`**：固定、永遠可見。桌面單行：logo + 關於我 / 專案 / 聯絡我 + 下載履歷。`≤720px` 漢堡（粗像素）；抽屜**文字置中**、點連結自動收合。
