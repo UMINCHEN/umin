@@ -507,6 +507,19 @@
         a.addEventListener('click', function () { setNav(false); });
       });
 
+      var lastScrollY = window.scrollY;
+      var navHideAt = 64;
+      window.addEventListener('scroll', function () {
+        var y = window.scrollY;
+        if (nav.classList.contains('is-open')) { lastScrollY = y; return; }
+        if (y <= navHideAt || y < lastScrollY) {
+          nav.classList.remove('nav--hidden');
+        } else if (y > lastScrollY) {
+          nav.classList.add('nav--hidden');
+        }
+        lastScrollY = y;
+      }, { passive: true });
+
       var lastFocus = null;
       function anyModalOpen() { return !!document.querySelector('.modal.is-open'); }
       function syncScrollLock() {
