@@ -62,7 +62,7 @@
 - **chips `.tag`**：**透明無底色、無框**、4px 圓角、**字級與內文一致（1rem）、左右內距縮窄（6px）**，文字前用 CSS `::before` 加**白色 `#`**（`--ink`；HTML 不寫 #，避免重複）。
 - **佔位 `.ph`**：綠面板 + 點陣 + 亮橘像素相片圖示 + 像素檔名 + 說明。變體 `--portrait`(4:5)、`--cover`、`--wide`(16:9)。替換：把 `<figure class="ph …" data-name="檔名">` 換成 `<img src="images/檔名" alt="…">`。
 - **導航 `.nav`**：固定頂部、**隨捲動方向隱藏／顯示**（往下捲超過 `--nav-h` 高度即滑出，往上捲立刻滑回；`.nav--hidden` 用 `transform: translateY(-100%)`，`transition: transform .25s`；選單展開中或在頂部區域不觸發隱藏）。桌面單行：logo + 關於我 / 專案 / 聯絡我 + 下載履歷。`≤720px` 漢堡（粗像素）；抽屜**文字置中**、點連結自動收合。
-- **全螢幕彈窗 `.modal`**：滿版、不跳頁；Esc / 點背景 / 關閉鈕關閉；**內容區塊水平置中、文字靠左**（`.modal__scroll > *` max-width 760 + `margin:auto`）；`modal__kicker` = 完整專案名（**不含年份**）用 Zpix；標題用 Zpix；`.case__h` 左橘邊。
+- **全螢幕彈窗 `.modal`**：滿版、不跳頁；Esc / 點背景 / 關閉鈕關閉；**內容區塊水平置中、文字靠左**（`.modal__scroll > *` max-width 760 + `margin:auto`）；`modal__kicker` = 完整專案名（**不含年份**）用 Zpix；標題用 Zpix；`.case__h` 左橘邊。**開啟時鎖背景捲動**（`body.no-scroll { overflow:hidden; overscroll-behavior:contain }`），滾輪只會捲彈窗內容（`.modal__scroll { overscroll-behavior:contain }`），滾到底也不會帶動首頁。
 - **頁尾 `.foot`**：**黑底 `#07080B` + 淡像素星空**、骨白文字、**標題細體 `400`**、`id-line` 主色橘且與內文同字級（1.02rem）；**滿版高度 `min-height:100dvh`、內容垂直置中、`scroll-snap-align:start`**（搭配 `html{scroll-snap-type:y proximity}`，滑到底自動吸附）。
 
 ## 6. 版面規則
